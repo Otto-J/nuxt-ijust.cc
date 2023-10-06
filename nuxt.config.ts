@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["@nuxt/content", "@nuxtjs/tailwindcss", "nuxt-feedme", "nuxt-icon"],
   content: {
+    // https://content.nuxt.com/document-driven/introduction
     api: {
       baseURL: "/api/_my_content", // 这里暴露了 api/_my_content
     },

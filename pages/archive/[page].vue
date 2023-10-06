@@ -1,6 +1,15 @@
 <template>
-  <div class="w-full">
-    <div>岁月如歌</div>
+  <div class="w-full py-4">
+    <var-cell>
+      <template #icon>
+        <icon size="28" name="openmoji:beating-heart" />
+      </template>
+      <div class="text-lg ml-2">
+        岁月如歌，我已经写了
+        <span class="underline font-bold text-red-500">{{ pager.total }}</span>
+        篇公开的文章。
+      </div>
+    </var-cell>
     <div v-for="item of yearFilterDataArray" class="my-2" :key="item.year">
       <var-cell>
         <template #icon>
@@ -66,13 +75,7 @@ const getPublishDate = (item: ParsedContent) => {
 };
 
 // 优先判断页码
-pager.total = await queryContent("/")
-  .where({
-    _dir: {
-      $in: ["blogs", "podcasts"],
-    },
-  })
-  .count();
+pager.total = await blogsCount();
 
 const maxCurrent = computed(() => Math.ceil(pager.total / pager.size));
 

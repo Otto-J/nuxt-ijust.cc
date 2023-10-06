@@ -26,7 +26,7 @@
                 <var-icon name="fire" />
               </template>
               <template #extra>
-                <var-badge :value="props.total" />
+                <var-badge :value="total" />
               </template>
             </var-cell>
           </nuxt-link>
@@ -56,14 +56,7 @@
   </var-sticky>
 </template>
 <script lang="ts" setup>
-const props = withDefaults(
-  defineProps<{
-    total?: number;
-  }>(),
-  {
-    total: 0,
-  },
-);
+const total = await blogsCount();
 
 const socialLinks = [
   {
