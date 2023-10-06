@@ -1,5 +1,4 @@
 <template>
-  <Header />
   <div class="p-2">
     <ContentDoc v-slot="{ doc }">
       <h1>{{ doc.title }}</h1>

@@ -1,23 +1,46 @@
 <template>
   <div>
-    <NuxtPage />
-    <footer class="mt-20">
-      <!-- <var-bottom-navigation fixed>
-        <var-bottom-navigation-item name="home" label="标签" icon="home" />
-        <var-bottom-navigation-item name="search" label="标签" icon="magnify" />
-        <var-bottom-navigation-item name="heart" label="标签" icon="heart" />
-        <var-bottom-navigation-item
-          name="user"
-          label="标签"
-          icon="account-circle"
-        />
-      </var-bottom-navigation> -->
-    </footer>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+    <footer class="mt-20">footer</footer>
   </div>
 </template>
 
 <script lang="ts" setup>
 import "@varlet/touch-emulator";
+
+//
+
+useSeoMeta({
+  title: "[title2]",
+  description: "[description]",
+  ogTitle: "[og:title]",
+  ogDescription: "[og:description]",
+  ogImage: "[og:image]",
+  ogUrl: "[og:url]",
+  twitterTitle: "[twitter:title]",
+  twitterDescription: "[twitter:description]",
+  twitterImage: "[twitter:image]",
+  twitterCard: "summary",
+});
+
+useHead({
+  htmlAttrs: {
+    lang: "zh-CN",
+  },
+  link: [
+    {
+      rel: "icon",
+      // type: "image/i",
+      href: "/favicon.ico",
+    },
+  ],
+});
 </script>
 
-<style></style>
+<style>
+.o {
+  outline: 1px solid red;
+}
+</style>

@@ -10,22 +10,26 @@
       <div class="py-2">
         <!-- list -->
         <var-paper :elevation="2">
-          <var-cell ripple title="Home" class="hover:bg-slate-100">
-            <template #icon>
-              <var-icon name="fire" />
-            </template>
-            <!-- <template #extra>
+          <nuxt-link to="/">
+            <var-cell ripple title="Home" class="hover:bg-slate-100">
+              <template #icon>
+                <var-icon name="fire" />
+              </template>
+              <!-- <template #extra>
             <var-icon name="information" />
           </template> -->
-          </var-cell>
-          <var-cell ripple title="Archive" class="hover:bg-slate-100">
-            <template #icon>
-              <var-icon name="fire" />
-            </template>
-            <template #extra>
-              <var-badge value="10" />
-            </template>
-          </var-cell>
+            </var-cell>
+          </nuxt-link>
+          <nuxt-link to="/archive">
+            <var-cell ripple title="Archive" class="hover:bg-slate-100">
+              <template #icon>
+                <var-icon name="fire" />
+              </template>
+              <template #extra>
+                <var-badge :value="props.total" />
+              </template>
+            </var-cell>
+          </nuxt-link>
           <var-cell ripple title="About" class="hover:bg-slate-100">
             <template #icon>
               <var-icon name="fire" />
@@ -40,7 +44,7 @@
         <var-image width="50%" class="mx-auto" src="/boy.png" />
         <p class="text-lg text-center text-stone-900">Be Happy.</p>
         <p class="text-sm text-center text-stone-900">Be Happy.</p>
-        <div>
+        <div class="flex justify-center space-x-2 mt-2">
           <div v-for="item of socialLinks" :key="item.link">
             <a :href="item.link" target="_blank">
               <icon :name="item.name"></icon>
@@ -52,6 +56,15 @@
   </var-sticky>
 </template>
 <script lang="ts" setup>
+const props = withDefaults(
+  defineProps<{
+    total?: number;
+  }>(),
+  {
+    total: 0,
+  },
+);
+
 const socialLinks = [
   {
     name: "mdi:github",
