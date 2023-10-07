@@ -4,7 +4,7 @@
       <NuxtPage />
     </NuxtLayout>
     <footer
-      class="mt-20 space-x-2 text-xs text-gray-500 text-center container mx-auto mb-2"
+      class="mt-20 space-x-2 text-xs text-gray-500 dark:text-gray-200 text-center container mx-auto mb-2"
     >
       <span>Copyright &copy; 2013-2023 辛宝Otto</span>
       <span>🚀</span>
@@ -50,5 +50,12 @@ useHead({
 <style>
 .o {
   outline: 1px solid red;
+}
+body {
+  transition:
+    background-color 0.25s,
+    color 0.25s;
+  color: var(--color-text);
+  background-color: var(--color-body);
 }
 </style>

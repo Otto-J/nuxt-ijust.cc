@@ -1,58 +1,80 @@
 <template>
   <var-sticky id="left-bar" class="w-full">
-    <div
-      class="title text-white bg-black py-8 flex justify-center items-center flex-col"
+    <var-paper
+      :elevation="2"
+      class="title dark:text-white py-8 text-center text-black"
     >
       <h1 class="text-xl">咿呀 能跑就行！&nbsp;</h1>
       <p class="text-sm mt-4">Solo Place.</p>
-    </div>
+    </var-paper>
     <var-space direction="column">
       <div class="py-2">
         <!-- list -->
-        <var-paper :elevation="2">
+        <var-paper :elevation="2" class="self-cell">
           <nuxt-link to="/">
-            <var-cell ripple title="Home" class="hover:bg-gray-100">
+            <var-cell ripple title="Home">
               <template #icon>
-                <var-icon name="fire" />
+                <icon
+                  name="material-symbols:other-houses-outline"
+                  size="18"
+                  class="mr-2"
+                />
               </template>
-              <!-- <template #extra>
-            <var-icon name="information" />
-          </template> -->
             </var-cell>
           </nuxt-link>
-          <nuxt-link to="/archive">
-            <var-cell ripple title="Archive" class="hover:bg-gray-100">
+
+          <nuxt-link to="/blogs">
+            <var-cell ripple title="Blogs">
               <template #icon>
-                <var-icon name="fire" />
+                <icon
+                  name="material-symbols:edit-calendar"
+                  size="18"
+                  class="mr-2"
+                />
               </template>
-              <template #extra>
-                <var-badge :value="total" />
+            </var-cell>
+          </nuxt-link>
+          <nuxt-link to="/podcasts">
+            <var-cell ripple title="Podcasts">
+              <template #icon>
+                <icon name="material-symbols:podcasts" class="mr-2" size="18" />
               </template>
             </var-cell>
           </nuxt-link>
           <nuxt-link to="/about">
-            <var-cell ripple title="About" class="hover:bg-gray-100">
+            <var-cell ripple title="About">
               <template #icon>
-                <var-icon name="fire" />
+                <icon name="material-symbols:person-4" size="18" class="mr-2" />
               </template>
-              <!-- <template #extra>
-                <var-icon name="information" />
-              </template> -->
             </var-cell>
           </nuxt-link>
         </var-paper>
       </div>
-      <var-paper class="py-2 text-center text-stone-900" :elevation="2">
+      <var-paper
+        class="pt-2 pb-6 text-center text-gray-800 dark:text-gray-100"
+        :elevation="2"
+      >
         <var-image width="50%" class="mx-auto" src="/boy.png" />
-        <p class="text-lg">Be Happy.</p>
-        <p class="text-sm">Be Happy.</p>
+        <p class="text-lg">辛宝Otto</p>
+        <p class="text-sm">Be a Happy Man</p>
 
         <div class="flex justify-center items-center space-x-2 mt-2">
-          <div class="">Find Me</div>
           <div v-for="item of socialLinks" :key="item.link">
             <a :href="item.link" target="_blank">
-              <icon :name="item.name"></icon>
+              <icon size="20" :name="item.name"></icon>
             </a>
+          </div>
+          <div class="cursor-pointer" @click="toggleDark(!isDark)">
+            <icon
+              size="20"
+              v-show="isDark"
+              name="material-symbols:light-mode-outline"
+            />
+            <icon
+              size="20"
+              name="material-symbols:mode-night-outline"
+              v-show="!isDark"
+            />
           </div>
         </div>
       </var-paper>
@@ -60,6 +82,18 @@
   </var-sticky>
 </template>
 <script lang="ts" setup>
+import { useDark, useToggle } from "@vueuse/core";
+import { StyleProvider, Themes } from "@varlet/ui";
+
+const isDark = useDark();
+const toggleDark = useToggle(isDark);
+
+let currentTheme = isDark.value ? Themes.dark : null;
+watchEffect(() => {
+  currentTheme = isDark.value ? Themes.dark : null;
+  StyleProvider(currentTheme);
+});
+
 const total = await blogsCount();
 
 const socialLinks = [
@@ -70,22 +104,25 @@ const socialLinks = [
   },
 
   {
-    name: "mdi:music-note",
+    name: "material-symbols:podcasts-app",
     friendlyName: "小宇宙",
     link: "https://www.xiaoyuzhoufm.com/podcast/6499832682e9dc2fb6db06b4",
   },
-
   {
-    name: "mdi:podcast",
+    name: "material-symbols:podcasts",
     friendlyName: "Apple Podcast",
     link: "https://podcasts.apple.com/cn/podcast/%E5%92%BF%E5%91%80-%E8%83%BD%E8%B7%91%E5%B0%B1%E8%A1%8C/id1695704262",
   },
   {
-    name: "fe:share",
+    name: "material-symbols:rss-feed",
     friendlyName: "WebSite",
-    link: "https://ijust.cc",
+    link: "https://ijust.cc/rss.xml",
   },
 ];
 </script>
 
-<style></style>
+<style>
+.self-cell > a > .var-cell {
+  @apply dark:hover:bg-gray-700 hover:bg-gray-200;
+}
+</style>

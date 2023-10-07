@@ -6,8 +6,6 @@ const router = useRouter();
 
 const route = useRoute();
 const tag = route.params?.id?.[0];
-
-console.log(tag);
 </script>
 
 <style></style>

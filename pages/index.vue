@@ -11,7 +11,7 @@
           v-for="article in list"
           :key="article._path"
           border
-          class="hover:bg-gray-100"
+          class="hover:bg-gray-100 dark:hover:bg-gray-600"
         >
           <div class="flex items-endjustify-start space-x-2">
             <nuxt-link :to="article._path">
@@ -22,7 +22,9 @@
             </nuxt-link>
           </div>
           <nuxt-link :to="article._path">
-            <p class="text-sm text-gray-500">{{ article.description }}</p>
+            <p class="text-sm text-gray-500 dark:text-gray-200">
+              {{ article.description }}
+            </p>
           </nuxt-link>
           <template #extra>
             <div class="w-24 text-right">
@@ -52,15 +54,12 @@
 </template>
 <script lang="ts" setup>
 import type { QueryBuilderParams } from "@nuxt/content/dist/runtime/types";
-import { ref } from "vue";
 
 const { data: intro } = await useAsyncData("page-data", () =>
   queryContent("about", "_intro").where({ _partial: true }).findOne(),
 );
 
 const pkOrange = "#ffb11b";
-
-console.log(4, intro);
 
 const pager = reactive({
   current: 1,

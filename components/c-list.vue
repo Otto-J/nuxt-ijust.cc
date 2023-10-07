@@ -123,7 +123,6 @@ const yearFilterDataArray = ref<
 >([]);
 
 const handleList = async () => {
-  console.log("fetch...");
   const data = await queryContent("/")
     .where({
       _dir: {

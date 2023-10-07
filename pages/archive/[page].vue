@@ -99,7 +99,6 @@ const { data, pending, error, refresh } = await useAsyncData("list", () => {
   if (isErrPage) {
     return Promise.resolve([]);
   }
-  // console.log(1, "fetch");
 
   return queryContent("/")
     .where({
@@ -142,7 +141,6 @@ const yearFilterDataArray = Object.entries(yearFilterData)
     };
   })
   .sort((a, b) => b.year - a.year);
-// console.log(22, yearFilterDataArray);
 </script>
 
 <style></style>

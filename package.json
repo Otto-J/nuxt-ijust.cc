@@ -22,9 +22,9 @@
   },
   "dependencies": {
     "@nuxt/image": "1.0.0-rc.3",
-    "@tailwindcss/typography": "^0.5.10",
     "@varlet/touch-emulator": "^2.17.0",
     "@varlet/ui": "^2.17.0",
+    "@vueuse/core": "^10.4.1",
     "dayjs": "^1.11.10",
     "sitemap": "^7.1.1"
   }
