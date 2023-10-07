@@ -14,7 +14,7 @@
               src="https://varlet.gitee.io/varlet-ui/cat.jpg"
             >
               <template #extra>
-                <div class="text-slate-800 text-sm">
+                <div class="text-gray-800 text-sm">
                   {{ article.date }}
                 </div>
               </template>
@@ -69,7 +69,7 @@ const recent5Posts: QueryBuilderParams = {
   sort: [{ date: -1 }],
 };
 
-const count = await queryContent("/").count();
+const count = await blogsCount();
 pager.total = count;
 
 const onPagerChange = (current: number) => {

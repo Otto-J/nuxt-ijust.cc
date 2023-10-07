@@ -1,13 +1,13 @@
 <template>
   <div class="container mx-auto layout-default">
-    <var-row :gutter="[20, 20]">
-      <var-col :span="6">
+    <div class="flex justify-between align-top space-x-4">
+      <div class="w-3/12">
         <c-side-bar />
-      </var-col>
-      <var-col :span="18">
+      </div>
+      <div class="w-9/12">
         <slot />
-      </var-col>
-    </var-row>
+      </div>
+    </div>
   </div>
 </template>
 <script lang="ts" setup></script>

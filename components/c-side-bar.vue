@@ -11,7 +11,7 @@
         <!-- list -->
         <var-paper :elevation="2">
           <nuxt-link to="/">
-            <var-cell ripple title="Home" class="hover:bg-slate-100">
+            <var-cell ripple title="Home" class="hover:bg-gray-100">
               <template #icon>
                 <var-icon name="fire" />
               </template>
@@ -21,7 +21,7 @@
             </var-cell>
           </nuxt-link>
           <nuxt-link to="/archive">
-            <var-cell ripple title="Archive" class="hover:bg-slate-100">
+            <var-cell ripple title="Archive" class="hover:bg-gray-100">
               <template #icon>
                 <var-icon name="fire" />
               </template>
@@ -30,7 +30,7 @@
               </template>
             </var-cell>
           </nuxt-link>
-          <var-cell ripple title="About" class="hover:bg-slate-100">
+          <var-cell ripple title="About" class="hover:bg-gray-100">
             <template #icon>
               <var-icon name="fire" />
             </template>
@@ -40,11 +40,13 @@
           </var-cell>
         </var-paper>
       </div>
-      <var-paper class="py-2" :elevation="2">
+      <var-paper class="py-2 text-center text-stone-900" :elevation="2">
         <var-image width="50%" class="mx-auto" src="/boy.png" />
-        <p class="text-lg text-center text-stone-900">Be Happy.</p>
-        <p class="text-sm text-center text-stone-900">Be Happy.</p>
-        <div class="flex justify-center space-x-2 mt-2">
+        <p class="text-lg">Be Happy.</p>
+        <p class="text-sm">Be Happy.</p>
+
+        <div class="flex justify-center items-center space-x-2 mt-2">
+          <div class="">Find Me</div>
           <div v-for="item of socialLinks" :key="item.link">
             <a :href="item.link" target="_blank">
               <icon :name="item.name"></icon>
