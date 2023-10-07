@@ -1,5 +1,5 @@
 <template>
-  <div>podcast list</div>
+  <c-list category="podcasts" />
 </template>
 <script lang="ts" setup></script>
 

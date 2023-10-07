@@ -6,7 +6,7 @@
       </template>
       <div class="text-lg ml-2">
         岁月如歌，我已经写了
-        <span class="underline font-bold text-red-500">{{ pager.total }}</span>
+        <span class="font-bold text-red-500">{{ pager.total }}</span>
         篇公开的文章。
       </div>
     </var-cell>
@@ -17,20 +17,22 @@
         </template>
         <span class="text-md ml-2">{{ item.year }}</span>
       </var-cell>
-      <nuxt-link v-for="i of item.data" :key="i._path" :to="i._path">
-        <var-cell border>
-          <div class="space-x-2">
+      <var-cell border v-for="i of item.data" :key="i._path">
+        <div class="space-x-2">
+          <nuxt-link :to="`/${i._dir}`">
             <var-badge type="success" :value="i._dir" />
+          </nuxt-link>
+          <nuxt-link :to="i._path">
             <span>{{ i.title }}</span>
-          </div>
+          </nuxt-link>
+        </div>
 
-          <template #extra>
-            <div class="w-24 text-right">
-              {{ getPublishDate(i) }}
-            </div>
-          </template>
-        </var-cell>
-      </nuxt-link>
+        <template #extra>
+          <div class="w-24 text-right">
+            {{ getPublishDate(i) }}
+          </div>
+        </template>
+      </var-cell>
     </div>
     <div class="m-8 flex justify-center">
       <var-pagination
@@ -97,7 +99,7 @@ const { data, pending, error, refresh } = await useAsyncData("list", () => {
   if (isErrPage) {
     return Promise.resolve([]);
   }
-  console.log(1, "fetch");
+  // console.log(1, "fetch");
 
   return queryContent("/")
     .where({
@@ -140,7 +142,7 @@ const yearFilterDataArray = Object.entries(yearFilterData)
     };
   })
   .sort((a, b) => b.year - a.year);
-console.log(22, yearFilterDataArray);
+// console.log(22, yearFilterDataArray);
 </script>
 
 <style></style>

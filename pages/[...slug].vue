@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div>home slug</div>
+    <!-- <div>home slug</div> -->
     <ContentDoc v-slot="{ doc }">
       <article>
         <h1>{{ doc.title }}</h1>

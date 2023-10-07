@@ -30,14 +30,16 @@
               </template>
             </var-cell>
           </nuxt-link>
-          <var-cell ripple title="About" class="hover:bg-gray-100">
-            <template #icon>
-              <var-icon name="fire" />
-            </template>
-            <!-- <template #extra>
-            <var-icon name="information" />
-          </template> -->
-          </var-cell>
+          <nuxt-link to="/about">
+            <var-cell ripple title="About" class="hover:bg-gray-100">
+              <template #icon>
+                <var-icon name="fire" />
+              </template>
+              <!-- <template #extra>
+                <var-icon name="information" />
+              </template> -->
+            </var-cell>
+          </nuxt-link>
         </var-paper>
       </div>
       <var-paper class="py-2 text-center text-stone-900" :elevation="2">
