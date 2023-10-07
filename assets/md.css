@@ -27,7 +27,7 @@ h6 {
   margin-bottom: 35px;
   display: inline-block;
   font-weight: 700;
-  @apply text-gray-600 dark:text-white dark:bg-orange-400 bg-orange-300;
+  @apply text-gray-600 dark:text-white bg-orange-100;
   padding: 2px 13px 2px;
   margin-right: 3px;
   height: 50%;
@@ -65,16 +65,13 @@ h6 {
   border: none;
   text-decoration: none;
   /* color: #dda52d; */
-  @apply text-orange-500;
+  @apply text-orange-400 hover:text-orange-300 hover:underline;
 }
-.markdown-body h2 > a,
+/* .markdown-body h2 > a,
 .markdown-body h3 > a {
   @apply text-gray-600 dark:text-white underline;
-}
-.markdown-body a:hover {
-  color: #f9bf45;
-  text-decoration: underline;
-}
+} */
+
 .markdown-body del {
   color: #d19826;
 }

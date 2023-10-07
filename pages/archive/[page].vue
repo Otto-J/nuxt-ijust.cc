@@ -53,7 +53,7 @@ const router = useRouter();
 
 const pager = reactive({
   current: 1,
-  size: 20,
+  size: 5,
   total: 1,
 });
 // const total =
@@ -94,7 +94,8 @@ watchEffect(() => {
   }
 });
 
-const { data, pending, error, refresh } = await useAsyncData("list", () => {
+const key = "archive-" + pager.current;
+const { data } = await useAsyncData(key, () => {
   const isErrPage = pager.current > maxCurrent.value || pager.current < 1;
   if (isErrPage) {
     return Promise.resolve([]);

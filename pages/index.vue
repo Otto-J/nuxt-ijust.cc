@@ -7,11 +7,10 @@
     </div>
     <ContentList :query="recent5Posts" path="/podcasts">
       <template #default="{ list }">
-        <var-cell
+        <div
           v-for="article in list"
           :key="article._path"
-          border
-          class="hover:bg-gray-100 dark:hover:bg-gray-600"
+          class="hover:bg-gray-100 dark:hover:bg-gray-600 border-b border-gray-200 dark:border-gray-600 p-4 flex flex-col justify-between items-start space-y-2"
         >
           <div class="flex items-endjustify-start space-x-2">
             <nuxt-link :to="article._path">
@@ -26,12 +25,11 @@
               {{ article.description }}
             </p>
           </nuxt-link>
-          <template #extra>
-            <div class="w-24 text-right">
-              {{ getPublishDate(article) }}
-            </div>
-          </template>
-        </var-cell>
+
+          <div class="text-right text-sm text-gray-500 dark:text-gray-200">
+            update: {{ getPublishDate(article) }}
+          </div>
+        </div>
       </template>
       <template #not-found>
         <p>No articles found.</p>

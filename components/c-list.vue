@@ -1,56 +1,56 @@
 <template>
-  <client-only>
-    <div class="w-full py-4">
+  <!-- <client-only> -->
+  <div class="w-full py-4">
+    <var-cell>
+      <template #icon>
+        <icon size="28" name="openmoji:beating-heart" />
+      </template>
+      <div class="text-lg ml-2">
+        <span>岁月如歌，我已经写了有关</span>
+        <span class="font-bold text-red-500 mx-1">
+          {{ props.category }}
+        </span>
+        <span>的</span>
+        <span class="font-bold text-red-500 mx-1">{{ pager.total }}</span>
+        <span>篇公开文章。</span>
+      </div>
+    </var-cell>
+    <div v-for="item of yearFilterDataArray" class="my-2" :key="item.year">
       <var-cell>
         <template #icon>
-          <icon size="28" name="openmoji:beating-heart" />
+          <icon size="20" name="tdesign:time" />
         </template>
-        <div class="text-lg ml-2">
-          <span>岁月如歌，我已经写了有关</span>
-          <span class="font-bold text-red-500 mx-1">
-            {{ props.category }}
-          </span>
-          <span>的</span>
-          <span class="font-bold text-red-500 mx-1">{{ pager.total }}</span>
-          <span>篇公开文章。</span>
-        </div>
+        <span class="text-md ml-2">{{ item.year }}</span>
       </var-cell>
-      <div v-for="item of yearFilterDataArray" class="my-2" :key="item.year">
-        <var-cell>
-          <template #icon>
-            <icon size="20" name="tdesign:time" />
-          </template>
-          <span class="text-md ml-2">{{ item.year }}</span>
-        </var-cell>
 
-        <var-cell border v-for="i of item.data" :key="i._path">
-          <div class="space-x-2">
-            <nuxt-link :to="`/${i._dir}`">
-              <var-badge type="success" :value="i._dir" />
-            </nuxt-link>
-            <nuxt-link :to="i._path">
-              <span>{{ i.title }}</span>
-            </nuxt-link>
+      <var-cell border v-for="i of item.data" :key="i._path">
+        <div class="space-x-2">
+          <nuxt-link :to="`/${i._dir}`">
+            <var-badge type="success" :value="i._dir" />
+          </nuxt-link>
+          <nuxt-link :to="i._path">
+            <span>{{ i.title }}</span>
+          </nuxt-link>
+        </div>
+
+        <template #extra>
+          <div class="w-24 text-right">
+            {{ getPublishDate(i) }}
           </div>
-
-          <template #extra>
-            <div class="w-24 text-right">
-              {{ getPublishDate(i) }}
-            </div>
-          </template>
-        </var-cell>
-      </div>
-      <div class="m-8 flex justify-center">
-        <var-pagination
-          v-model:current="pager.current"
-          :total="pager.total"
-          :size="pager.size"
-          :show-size-changer="false"
-          @change="onPagerChange"
-        />
-      </div>
+        </template>
+      </var-cell>
     </div>
-  </client-only>
+    <div class="m-8 flex justify-center">
+      <var-pagination
+        v-model:current="pager.current"
+        :total="pager.total"
+        :size="pager.size"
+        :show-size-changer="false"
+        @change="onPagerChange"
+      />
+    </div>
+  </div>
+  <!-- </client-only> -->
 </template>
 <script lang="ts" setup>
 import { ParsedContent } from "@nuxt/content/dist/runtime/types";
@@ -123,19 +123,22 @@ const yearFilterDataArray = ref<
 >([]);
 
 const handleList = async () => {
-  const data = await queryContent("/")
-    .where({
-      _dir: {
-        $in: [props.category],
-      },
-    })
-    .sort({ date: -1 })
-    .limit(pager.size)
-    .skip((pager.current - 1) * pager.size)
-    .find();
+  const key = `list-${props.category}-${pager.current}`;
+  const { data } = await useAsyncData(key, () =>
+    queryContent("/")
+      .where({
+        _dir: {
+          $in: [props.category],
+        },
+      })
+      .sort({ date: -1 })
+      .limit(pager.size)
+      .skip((pager.current - 1) * pager.size)
+      .find(),
+  );
 
   /** 添加 year 字段，按照年份分组 */
-  const yearFilterData = (data ?? [])
+  const yearFilterData = (data.value ?? [])
     ?.map((i) => {
       const _date = i.date ?? i.pubDate;
       return {

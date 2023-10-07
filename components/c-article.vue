@@ -1,9 +1,11 @@
 <template>
-  <var-paper :elevation="2" class="container p-2 px-8 markdown-body">
+  <var-paper :elevation="2" class="container p-2 md:px-8 px-4 markdown-body">
     <ContentDoc v-slot="{ doc }">
-      <h1 class="text-3xl text-center mt-10 mb-4">{{ doc.title }}</h1>
+      <h1 class="text-3xl text-center md:mt-10 md:mb-4 my-2">
+        {{ doc.title }}
+      </h1>
       <div
-        class="flex justify-center items-center space-x-4 mb-4 text-gray-700 text-sm"
+        class="flex flex-wrap justify-center items-center space-x-4 mb-4 text-gray-700 text-sm"
       >
         <p>
           <span>发布于</span>

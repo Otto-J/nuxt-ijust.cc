@@ -1,16 +1,16 @@
 <template>
-  <var-sticky id="left-bar" class="w-full">
-    <var-paper
-      :elevation="2"
-      class="title dark:text-white py-8 text-center text-black"
-    >
+  <div class="w-full">
+    <div class="title text-white py-8 text-center bg-gray-900 flex flex-col">
       <h1 class="text-xl">咿呀 能跑就行！&nbsp;</h1>
       <p class="text-sm mt-4">Solo Place.</p>
-    </var-paper>
-    <var-space direction="column">
-      <div class="py-2">
+    </div>
+    <div class="space-y-2">
+      <div class="mk:py-2 py-0">
         <!-- list -->
-        <var-paper :elevation="2" class="self-cell">
+        <var-paper
+          :elevation="2"
+          class="self-cell flex flex-wrap flex-row md:flex-col justify-center"
+        >
           <nuxt-link to="/">
             <var-cell ripple title="Home">
               <template #icon>
@@ -78,8 +78,8 @@
           </div>
         </div>
       </var-paper>
-    </var-space>
-  </var-sticky>
+    </div>
+  </div>
 </template>
 <script lang="ts" setup>
 import { useDark, useToggle } from "@vueuse/core";
