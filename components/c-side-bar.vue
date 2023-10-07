@@ -68,11 +68,7 @@ const socialLinks = [
     friendlyName: "Github",
     link: "https://github.com/otto-j",
   },
-  {
-    name: "mdi:twitter",
-    friendlyName: "twitter",
-    link: "https://twitter.com/ji3206",
-  },
+
   {
     name: "mdi:music-note",
     friendlyName: "小宇宙",
@@ -89,13 +85,6 @@ const socialLinks = [
     friendlyName: "WebSite",
     link: "https://ijust.cc",
   },
-
-  {
-    name: "mdi:email",
-    friendlyName: "email",
-    link: "mailto:xinbao@webworker.tech",
-  },
-  // fe:share
 ];
 </script>
 

@@ -5,7 +5,13 @@ import { VarletUIResolver } from "unplugin-vue-components/resolvers";
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxt/content", "@nuxtjs/tailwindcss", "nuxt-feedme", "nuxt-icon"],
+  modules: [
+    "@nuxt/content",
+    "@nuxtjs/tailwindcss",
+    "@nuxt/image",
+    "nuxt-feedme",
+    "nuxt-icon",
+  ],
   content: {
     // https://content.nuxt.com/document-driven/introduction
     api: {

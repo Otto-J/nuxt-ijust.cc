@@ -17,7 +17,7 @@
 
 <script lang="ts" setup>
 import "@varlet/touch-emulator";
-
+import "@/assets/md.css";
 //
 
 useSeoMeta({

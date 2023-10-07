@@ -118,7 +118,7 @@ const onPagerChange = (current: number) => {
 const yearFilterDataArray = ref<
   Array<{
     year: number;
-    data: unknown;
+    data: any;
   }>
 >([]);
 

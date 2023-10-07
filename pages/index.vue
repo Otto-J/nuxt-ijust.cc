@@ -1,26 +1,35 @@
 <template>
   <div class="px-2">
+    <div class="markdown-body px-4 border rounded-lg mb-8 mt-8 border-gray-300">
+      <ContentRenderer :value="intro!">
+        <ContentRendererMarkdown :value="intro!" />
+      </ContentRenderer>
+    </div>
     <ContentList :query="recent5Posts" path="/podcasts">
       <template #default="{ list }">
-        <var-space direction="column" size="large">
-          <NuxtLink
-            :to="article._path"
-            v-for="article in list"
-            :key="article._path"
-          >
-            <var-card
-              :title="article.title"
-              :description="article.description"
-              src="https://varlet.gitee.io/varlet-ui/cat.jpg"
-            >
-              <template #extra>
-                <div class="text-gray-800 text-sm">
-                  {{ article.date }}
-                </div>
-              </template>
-            </var-card>
-          </NuxtLink>
-        </var-space>
+        <var-cell
+          v-for="article in list"
+          :key="article._path"
+          border
+          class="hover:bg-gray-100"
+        >
+          <div class="flex items-endjustify-start space-x-2">
+            <nuxt-link :to="article._path">
+              <p class="text-base mb-2">{{ article.title }}</p>
+            </nuxt-link>
+            <nuxt-link :to="`/${article._dir}`">
+              <var-badge :color="pkOrange" :value="`#${article._dir}`" />
+            </nuxt-link>
+          </div>
+          <nuxt-link :to="article._path">
+            <p class="text-sm text-gray-500">{{ article.description }}</p>
+          </nuxt-link>
+          <template #extra>
+            <div class="w-24 text-right">
+              {{ getPublishDate(article) }}
+            </div>
+          </template>
+        </var-cell>
       </template>
       <template #not-found>
         <p>No articles found.</p>
@@ -36,7 +45,7 @@
               @change="onPagerChange"
             /> -->
       <NuxtLink to="/archive">
-        <var-button type="primary">查看更多</var-button>
+        <var-button :color="pkOrange" text-color="#fff">查看更多</var-button>
       </NuxtLink>
     </div>
   </div>
@@ -45,24 +54,29 @@
 import type { QueryBuilderParams } from "@nuxt/content/dist/runtime/types";
 import { ref } from "vue";
 
+const { data: intro } = await useAsyncData("page-data", () =>
+  queryContent("about", "_intro").where({ _partial: true }).findOne(),
+);
+
+const pkOrange = "#ffb11b";
+
+console.log(4, intro);
+
 const pager = reactive({
   current: 1,
-  size: 4,
-  total: 10,
+  size: 6,
+  total: 1,
 });
-
-// const content = await queryContent("")
-//   // .where([{}])
-//   .limit(pager.size)
-//   .skip((pager.current - 1) * pager.size)
-
-//   .sort({ date: -1 })
-//   .find();
-// console.log(content);
 
 const recent5Posts: QueryBuilderParams = {
   path: "/",
-  where: [{}],
+  where: [
+    {
+      _dir: {
+        $in: ["blogs", "podcasts"],
+      },
+    },
+  ],
   limit: pager.size,
   skip: (pager.current - 1) * pager.size,
 
@@ -71,12 +85,6 @@ const recent5Posts: QueryBuilderParams = {
 
 const count = await blogsCount();
 pager.total = count;
-
-const onPagerChange = (current: number) => {
-  pager.current = current;
-};
-
-const active = ref(0);
 
 useSeoMeta({
   title: "[title]",

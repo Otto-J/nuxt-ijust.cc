@@ -1,10 +1,10 @@
 <template>
-  <var-paper :elevation="2" class="container p-2 px-8">
+  <var-paper :elevation="2" class="container p-2 px-8 markdown-body">
     <ContentDoc v-slot="{ doc }">
       <!-- <div>{{ doc }}</div> -->
       <h1 class="text-3xl text-center mt-10 mb-4">{{ doc.title }}</h1>
       <div
-        class="flex justify-center items-center space-x-4 mb-10 text-gray-700 text-sm"
+        class="flex justify-center items-center space-x-4 mb-4 text-gray-700 text-sm"
       >
         <p>
           <span>发布于</span>
@@ -30,14 +30,13 @@
           </nuxt-link>
         </p>
       </div>
-      <div class="mb-10 border-b-2 border-gray-200" />
 
       <ProseBlockquote v-if="doc.description">{{
         doc.description
       }}</ProseBlockquote>
       <!-- <article class="prose"> -->
       <ContentRenderer
-        class="prose mt-8 w-full max-w-none"
+        class="mt-8 w-full max-w-none"
         tag="article"
         :value="doc"
       />
