@@ -118,7 +118,7 @@ const socialLinks = [
   {
     name: "material-symbols:rss-feed",
     friendlyName: "WebSite",
-    link: "https://ijust.cc/rss.xml",
+    link: "/rss.xml",
   },
 ];
 </script>

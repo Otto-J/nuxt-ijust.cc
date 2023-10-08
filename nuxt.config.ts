@@ -32,7 +32,7 @@ export default defineNuxtConfig({
           language: "zh-cn",
           description: "描述",
 
-          link: "https://ijust.cc", // 完整网址
+          link: "/", // 完整网址
           ttl: 360,
           author: {
             email: "xinbao@webworker.tech",
