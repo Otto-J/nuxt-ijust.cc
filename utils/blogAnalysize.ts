@@ -4,6 +4,7 @@ export const blogsCount = () => {
       _dir: {
         $in: ["blogs", "podcasts"],
       },
+      _partial: false,
     })
     .count();
 };

@@ -1,5 +1,4 @@
 <template>
-  <!-- <client-only> -->
   <div class="w-full py-4">
     <var-cell>
       <template #icon>
@@ -41,16 +40,9 @@
       </var-cell>
     </div>
     <div class="m-8 flex justify-center">
-      <var-pagination
-        v-model:current="pager.current"
-        :total="pager.total"
-        :size="pager.size"
-        :show-size-changer="false"
-        @change="onPagerChange"
-      />
+      <c-pager :pager="pager" :base-path="`/${props.category}/page`" />
     </div>
   </div>
-  <!-- </client-only> -->
 </template>
 <script lang="ts" setup>
 import { ParsedContent } from "@nuxt/content/dist/runtime/types";
@@ -64,20 +56,21 @@ const props = defineProps<{
 
 const pager = reactive({
   current: 1,
-  size: 4,
+  size: 10,
   total: 1,
 });
 
-// 优先判断页码
-pager.total = await queryContent("/")
-  .where({
-    _dir: {
-      $in: [props.category],
-    },
-  })
-  .count();
+const commonWhere = {
+  _dir: {
+    $in: [props.category],
+  },
+  _partial: false,
+};
 
-const _routerPage = Number(route.query?.page?.[0]);
+// 优先判断页码
+pager.total = await queryContent("/").where(commonWhere).count();
+
+const _routerPage = Number(route.params?.page);
 const handlePageCase = () => {
   const maxCurrent = Math.ceil(pager.total / pager.size);
 
@@ -86,15 +79,11 @@ const handlePageCase = () => {
   // 判断当前的 current 是否大于实际页数，如果是默认为最大值
   if (pager.current > maxCurrent) {
     router.replace({
-      query: {
-        page: maxCurrent,
-      },
+      path: "`/${props.category}/page/${maxCurrent}``",
     });
   } else if (pager.current < 1 || Number.isNaN(_routerPage)) {
     router.replace({
-      query: {
-        page: 1,
-      },
+      path: "`/${props.category}/page/1`",
     });
   }
 };
@@ -104,15 +93,6 @@ handlePageCase();
 const getPublishDate = (item: ParsedContent) => {
   const _date = item.date ?? item.pubDate;
   return formatDate(_date);
-};
-const onPagerChange = (current: number) => {
-  pager.current = current;
-  router.push({
-    query: {
-      page: current,
-    },
-  });
-  handleList();
 };
 
 const yearFilterDataArray = ref<
@@ -126,16 +106,19 @@ const handleList = async () => {
   const key = `list-${props.category}-${pager.current}`;
   const { data } = await useAsyncData(key, () =>
     queryContent("/")
-      .where({
-        _dir: {
-          $in: [props.category],
-        },
-      })
+      .where(commonWhere)
       .sort({ date: -1 })
       .limit(pager.size)
       .skip((pager.current - 1) * pager.size)
       .find(),
   );
+
+  const f = await queryContent("/")
+    .where(commonWhere)
+    .sort({ date: -1 })
+    .limit(pager.size)
+    .skip((pager.current - 1) * pager.size)
+    .find();
 
   /** 添加 year 字段，按照年份分组 */
   const yearFilterData = (data.value ?? [])

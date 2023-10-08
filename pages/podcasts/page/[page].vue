@@ -5,9 +5,13 @@
         <icon size="28" name="openmoji:beating-heart" />
       </template>
       <div class="text-lg ml-2">
-        岁月如歌，我已经写了
-        <span class="font-bold text-red-500">{{ pager.total }}</span>
-        篇公开的文章。
+        <span>岁月如歌，我已经写了有关</span>
+        <span class="font-bold text-red-500 mx-1">
+          {{ category }}
+        </span>
+        <span>的</span>
+        <span class="font-bold text-red-500 mx-1">{{ pager.total }}</span>
+        <span>篇公开文章。</span>
       </div>
     </var-cell>
     <div v-for="item of yearFilterDataArray" class="my-2" :key="item.year">
@@ -17,6 +21,7 @@
         </template>
         <span class="text-md ml-2">{{ item.year }}</span>
       </var-cell>
+
       <var-cell border v-for="i of item.data" :key="i._path">
         <div class="space-x-2">
           <nuxt-link :to="`/${i._dir}`">
@@ -35,65 +40,61 @@
       </var-cell>
     </div>
     <div class="m-8 flex justify-center">
-      <c-pager :pager="pager" base-path="/archive" />
+      <c-pager :pager="pager" :base-path="`/${category}/page`" />
     </div>
   </div>
 </template>
 <script lang="ts" setup>
 import { ParsedContent } from "@nuxt/content/dist/runtime/types";
 import dayjs from "dayjs";
+
+const category = "podcasts";
+const commonWhere = {
+  _dir: {
+    $in: [category],
+  },
+  _partial: false,
+};
 const route = useRoute();
-const router = useRouter();
+
+const getPublishDate = (item: any) => {
+  const _date = item.date ?? item.pubDate;
+  return formatDate(_date);
+};
 
 const pager = reactive({
   current: 1,
   size: 10,
   total: 1,
 });
-
-const _routerPage = Number(route.params?.page);
-
-const current = Number.isNaN(_routerPage) ? 1 : _routerPage;
-
-pager.current = current < 1 ? 1 : current;
-
-const getPublishDate = (item: ParsedContent) => {
-  const _date = item.date ?? item.pubDate;
-  return formatDate(_date);
-};
-
 // 优先判断页码
-pager.total = await blogsCount();
+pager.total = await queryContent("/").where(commonWhere).count();
+
+let current = Number(route.params?.page) || 1;
 
 const maxCurrent = computed(() => Math.ceil(pager.total / pager.size));
 
-watchEffect(() => {
-  // 判断当前的 current 是否大于实际页数，如果是默认为最大值
-  if (pager.current > maxCurrent.value) {
-    router.replace({
-      path: `/archive/${maxCurrent.value}`,
-    });
-  } else if (pager.current < 1 || Number.isNaN(_routerPage)) {
-    router.replace({
-      path: `/archive/1`,
-    });
-  }
-});
+// min max
+current = current < 1 ? 1 : current;
+current = current > maxCurrent.value ? maxCurrent.value : current;
+pager.current = current;
 
-const key = "archive-" + pager.current;
-const { data } = await useAsyncData(key, () => {
-  return queryContent("/")
-    .where({
-      _dir: {
-        $in: ["blogs", "podcasts"],
-      },
-      _partial: false,
-    })
+const yearFilterDataArray = ref<
+  Array<{
+    year: number;
+    data: any;
+  }>
+>([]);
+
+const key = `list-${category}-${pager.current}`;
+const { data } = await useAsyncData(key, () =>
+  queryContent("/")
+    .where(commonWhere)
     .sort({ date: -1 })
     .limit(pager.size)
     .skip((pager.current - 1) * pager.size)
-    .find();
-});
+    .find(),
+);
 
 /** 添加 year 字段，按照年份分组 */
 const yearFilterData = (data.value ?? [])
@@ -116,7 +117,7 @@ const yearFilterData = (data.value ?? [])
     {} as Record<number, ParsedContent[]>,
   );
 // 转换成数组，按照年份倒序
-const yearFilterDataArray = Object.entries(yearFilterData)
+yearFilterDataArray.value = Object.entries(yearFilterData)
   .map(([year, data]) => {
     return {
       year: Number(year),
@@ -125,5 +126,3 @@ const yearFilterDataArray = Object.entries(yearFilterData)
   })
   .sort((a, b) => b.year - a.year);
 </script>
-
-<style></style>

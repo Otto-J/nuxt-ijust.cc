@@ -95,7 +95,7 @@ export default defineNuxtConfig({
           // rss
           rel: "alternate",
           type: "application/rss+xml",
-          title: "自定义RSS XML",
+          title: "Feed XML",
           href: "/feed.xml",
         },
         {
@@ -111,12 +111,13 @@ export default defineNuxtConfig({
     prerender: {
       routes: [
         "/sitemap.xml",
-        "/archive/1",
-        "/archive/2",
-        "/archive/3",
-        "/podcasts?page=1",
-        "/podcasts?page=2",
-        "/podcasts?page=3",
+        // "/tags/syntax.fm",
+        // "/archive/1",
+        // "/archive/2",
+        // "/archive/3",
+        // "/podcasts?page=1",
+        // "/podcasts?page=2",
+        // "/podcasts?page=3",
       ],
     },
   },

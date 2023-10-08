@@ -23,7 +23,7 @@
             </var-cell>
           </nuxt-link>
 
-          <nuxt-link to="/blogs">
+          <nuxt-link to="/blogs/page/1">
             <var-cell ripple title="Blogs">
               <template #icon>
                 <icon
@@ -34,7 +34,7 @@
               </template>
             </var-cell>
           </nuxt-link>
-          <nuxt-link to="/podcasts">
+          <nuxt-link to="/podcasts/page/1">
             <var-cell ripple title="Podcasts">
               <template #icon>
                 <icon name="material-symbols:podcasts" class="mr-2" size="18" />

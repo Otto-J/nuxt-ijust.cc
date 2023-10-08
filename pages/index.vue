@@ -37,14 +37,7 @@
     </ContentList>
 
     <div class="m-8 flex justify-center">
-      <!-- <var-pagination
-              v-model:current="pager.current"
-              :total="pager.total"
-              :size="pager.size"
-              :show-size-changer="false"
-              @change="onPagerChange"
-            /> -->
-      <NuxtLink to="/archive">
+      <NuxtLink to="/archive/1">
         <var-button :color="pkOrange" text-color="#fff">查看更多</var-button>
       </NuxtLink>
     </div>
@@ -61,7 +54,7 @@ const pkOrange = "#ffb11b";
 
 const pager = reactive({
   current: 1,
-  size: 8,
+  size: 10,
   total: 1,
 });
 

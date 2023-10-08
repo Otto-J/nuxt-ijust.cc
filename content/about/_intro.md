@@ -1,3 +1,7 @@
+---
+tags: ["nuxt"]
+---
+
 ## Hello World
 
 Hi，这是我的小站。233
