@@ -1,8 +1,8 @@
 <template>
   <div class="w-full">
     <div class="title text-white py-8 text-center bg-gray-900 flex flex-col">
-      <h1 class="text-xl">咿呀 能跑就行！&nbsp;</h1>
-      <p class="text-sm mt-4">Solo Place.</p>
+      <h1 class="text-xl">{{ appConfig.website_title }}</h1>
+      <p class="text-sm mt-4">{{ appConfig.website_description }}</p>
     </div>
     <div class="space-y-2">
       <div class="mk:py-2 py-0">
@@ -55,13 +55,13 @@
         :elevation="2"
       >
         <var-image width="50%" class="mx-auto" src="/boy.png" />
-        <p class="text-lg">辛宝Otto</p>
-        <p class="text-sm">Be a Happy Man</p>
+        <p class="text-lg">{{ appConfig.website_author_name }}</p>
+        <p class="text-sm">{{ appConfig.website_author_desc }}</p>
 
         <div class="flex justify-center items-center space-x-2 mt-2">
           <div v-for="item of socialLinks" :key="item.link">
             <a :href="item.link" target="_blank">
-              <icon size="20" :name="item.name"></icon>
+              <icon size="20" :name="item.name" />
             </a>
           </div>
           <div class="cursor-pointer" @click="toggleDark(!isDark)">
@@ -87,6 +87,8 @@ import { StyleProvider, Themes } from "@varlet/ui";
 
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
+
+const appConfig = useAppConfig();
 
 let currentTheme = isDark.value ? Themes.dark : null;
 watchEffect(() => {

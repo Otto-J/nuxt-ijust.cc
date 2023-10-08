@@ -20,16 +20,18 @@ import "@varlet/touch-emulator";
 import "@/assets/md.css";
 //
 
+const appConfig = useAppConfig();
+
 useSeoMeta({
-  title: "[title2]",
-  description: "[description]",
-  ogTitle: "[og:title]",
-  ogDescription: "[og:description]",
-  ogImage: "[og:image]",
-  ogUrl: "[og:url]",
-  twitterTitle: "[twitter:title]",
-  twitterDescription: "[twitter:description]",
-  twitterImage: "[twitter:image]",
+  title: appConfig.website_title + " - " + appConfig.website_description,
+  description: appConfig.website_description,
+  ogTitle: appConfig.website_title,
+  ogDescription: appConfig.website_description,
+  // ogImage: "[og:image]",
+  ogUrl: "/",
+  twitterTitle: appConfig.website_title,
+  twitterDescription: appConfig.website_description,
+  // twitterImage: "[twitter:image]",
   twitterCard: "summary",
 });
 
@@ -37,13 +39,7 @@ useHead({
   htmlAttrs: {
     lang: "zh-CN",
   },
-  link: [
-    {
-      rel: "icon",
-      // type: "image/i",
-      href: "/favicon.ico",
-    },
-  ],
+  link: [],
 });
 </script>
 

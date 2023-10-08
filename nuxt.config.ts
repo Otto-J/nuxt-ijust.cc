@@ -72,16 +72,12 @@ export default defineNuxtConfig({
           name: "author",
           content: "",
         },
-        {
-          // name:'twitter:title'
-          name: "og:type",
-          content: "website",
-        },
-        {
-          // name:'og:url'
-        },
       ],
       link: [
+        {
+          rel: "icon",
+          href: "/favicon.ico",
+        },
         {
           // sitemap
           rel: "sitemap",
@@ -112,7 +108,15 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
-      routes: ["/sitemap.xml"],
+      routes: [
+        "/sitemap.xml",
+        "/archive/1",
+        "/archive/2",
+        "/archive/3",
+        "/podcasts?page=1",
+        "/podcasts?page=2",
+        "/podcasts?page=3",
+      ],
     },
   },
   runtimeConfig: {
