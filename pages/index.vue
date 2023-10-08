@@ -54,7 +54,7 @@ const pkOrange = "#ffb11b";
 
 const pager = reactive({
   current: 1,
-  size: 10,
+  size: 6,
   total: 1,
 });
 

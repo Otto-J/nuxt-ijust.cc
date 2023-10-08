@@ -18,6 +18,30 @@ export default defineNuxtConfig({
     api: {
       baseURL: "/api/_my_content", // 这里暴露了 api/_my_content
     },
+    highlight: {
+      theme: "nord",
+      preload: [
+        "html",
+        "vue-html",
+        "css",
+        "less",
+        "scss",
+        "js",
+        "javascript",
+        "jsx",
+        "tsx",
+        "ts",
+        "typescript",
+        "vue",
+        "bash",
+        "shell",
+        "json",
+        "markdown",
+        "yml",
+        "yaml",
+        "docker",
+      ],
+    },
   },
   feedme: {
     feeds: {
