@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "nuxt-feedme",
     "nuxt-icon",
+    "@nuxthq/studio",
   ],
   content: {
     // https://content.nuxt.com/document-driven/introduction
