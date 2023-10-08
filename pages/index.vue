@@ -5,7 +5,7 @@
         <ContentRendererMarkdown :value="intro!" />
       </ContentRenderer>
     </div>
-    <ContentList :query="recent5Posts" path="/podcasts">
+    <ContentList :query="recent5Posts">
       <template #default="{ list }">
         <div
           v-for="article in list"
@@ -61,7 +61,7 @@ const pkOrange = "#ffb11b";
 
 const pager = reactive({
   current: 1,
-  size: 6,
+  size: 8,
   total: 1,
 });
 
