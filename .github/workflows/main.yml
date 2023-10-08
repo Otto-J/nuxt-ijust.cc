@@ -1,0 +1,58 @@
+# 使用 node v18 启用 corepack pnpm，pnpm run build
+name: Node.js CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8.8.0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+          # registry-url: "https://registry.npmjs.org"
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build
+        run: pnpm run generate
+      # - name: Test
+      #   run: pnpm test
+
+      - name: Upload to Tencent COS 腾讯云对象存储
+        uses: TencentCloud/cos-action@v1
+        with:
+          secret_id: ${{ secrets.TENCENT_CLOUD_SECRET_ID }}
+          secret_key: ${{ secrets.TENCENT_CLOUD_SECRET_KEY }}
+          cos_bucket: ${{ secrets.COS_BUCKET }}
+          cos_region: ${{ secrets.COS_REGION }}
+          local_path: .output/public
+          remote_path: /
+          clean: true # 先不删除
+
+
+      # - name: Upload to Aliyun OSS 阿里云对象存储 不知道为啥有个 404 先不启用
+      #   uses: jakejarvis/s3-sync-action@master
+      #   with:
+      #     args: --acl public-read --follow-symlinks --delete
+      #   env:
+      #     AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_REGION: "oss-cn-beijing" # optional: defaults to us-east-1
+      #     AWS_S3_ENDPOINT: "https://${{ secrets.AWS_S3_BUCKET }}.oss-cn-beijing.aliyuncs.com"
+      #     SOURCE_DIR: "dist"
+      #     DEST_DIR: "/"
