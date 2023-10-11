@@ -22,12 +22,12 @@
         <span class="text-md ml-2">{{ item.year }}</span>
       </var-cell>
 
-      <var-cell border v-for="i of item.data" :key="i._path">
+      <var-cell border v-for="i of item.data" :key="parseUrlByDoc(i)">
         <div class="space-x-2">
           <nuxt-link :to="`/${i._dir}`">
             <var-badge type="success" :value="i._dir" />
           </nuxt-link>
-          <nuxt-link :to="i._path">
+          <nuxt-link :to="parseUrlByDoc(i)">
             <span>{{ i.title }}</span>
           </nuxt-link>
         </div>
@@ -112,13 +112,6 @@ const handleList = async () => {
       .skip((pager.current - 1) * pager.size)
       .find(),
   );
-
-  const f = await queryContent("/")
-    .where(commonWhere)
-    .sort({ date: -1 })
-    .limit(pager.size)
-    .skip((pager.current - 1) * pager.size)
-    .find();
 
   /** 添加 year 字段，按照年份分组 */
   const yearFilterData = (data.value ?? [])

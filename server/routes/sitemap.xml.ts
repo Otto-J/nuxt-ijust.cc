@@ -1,5 +1,16 @@
 import { serverQueryContent } from "#content/server";
 import { SitemapStream, streamToPromise } from "sitemap";
+// import { parseUrlByDoc } from "#content/utils/parse-url";
+
+const parseUrlByDoc = (article: any) => {
+  // const baseUrl = articl
+  if (article.slug) {
+    // 优先 slug
+    return article._dir + "/" + article.slug;
+  } else {
+    return article._path;
+  }
+};
 
 export default defineEventHandler(async (event) => {
   // Fetch all documents
@@ -10,7 +21,7 @@ export default defineEventHandler(async (event) => {
 
   for (const doc of docs) {
     sitemap.write({
-      url: doc._path,
+      url: parseUrlByDoc(doc),
       changefreq: "monthly",
     });
   }

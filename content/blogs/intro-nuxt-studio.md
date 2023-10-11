@@ -1,23 +1,22 @@
 ---
 date: 2023-10-08 15:02:23
-title: 介绍 NuxtStudio 
+title: 介绍 NuxtStudio
 keywords: nuxt, nuxtstudio, git cms
 description: 介绍下 nuxt.studio 基础使用和踩坑经验分享
 tags: ["nuxt"]
+slug: "intro-nuxStudio"
 ---
-
 
 最近在研究 `nuxt`，希望能把 nuxt 作为后续使用的主力技术栈。在使用 Nuxt + Nuxt Content 的过程中，发现了官方最近推出了 [nuxt.studio](https://nuxt.studio)，看起来挺不错。
 
-
 ![nuxt.studio](/WX20231008-151104.png)
-
 
 感觉可能用得上，就随时试了一下，感觉还可以。这里做个基础使用和踩坑分享。
 
 ## 简单介绍
 
 简单介绍 nuxt.studio。这算是一套插件，通过网站后台可以修改 github 上的文件，并且可以通过 preview 的方案实时看到编辑的效果。目标用户是：
+
 - 基于 github 等 git 工作流的网站
 - 编辑文章不想离开浏览器，希望可以浏览器里实时创建和更新文章，并希望看到生效的预览效果
 - 不要阻塞现有的工作流程
@@ -29,6 +28,7 @@ tags: ["nuxt"]
 ## 接入使用
 
 整体的流程，就是大象放入冰箱的三步骤：
+
 1. 准备 Nuxt 项目，并放入 Github
 2. 接入 Nuxt Studio 模块
 3. 演示效果
@@ -73,4 +73,3 @@ tags: ["nuxt"]
 ![Snipaste_2023-10-08_16-22-11.png](/Snipaste_2023-10-08_16-22-11.png)
 
 本文就是用 studio 提供的方案运行的，并不是实时预览，感觉页面 idel 个十几秒才会同步一次。
-

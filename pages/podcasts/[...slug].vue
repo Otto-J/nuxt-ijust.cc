@@ -1,5 +1,5 @@
 <template>
-  <c-article />
+  <c-article category="podcasts" />
 </template>
 <script lang="ts" setup></script>
 

@@ -9,18 +9,18 @@
       <template #default="{ list }">
         <div
           v-for="article in list"
-          :key="article._path"
+          :key="parseUrlByDoc(article)"
           class="hover:bg-gray-100 dark:hover:bg-gray-600 border-b border-gray-200 dark:border-gray-600 p-4 flex flex-col justify-between items-start space-y-2"
         >
           <div class="flex items-endjustify-start space-x-2">
-            <nuxt-link :to="article._path">
+            <nuxt-link :to="parseUrlByDoc(article)">
               <p class="text-base mb-2">{{ article.title }}</p>
             </nuxt-link>
             <nuxt-link :to="`/${article._dir}`">
               <var-badge :color="pkOrange" :value="`#${article._dir}`" />
             </nuxt-link>
           </div>
-          <nuxt-link :to="article._path">
+          <nuxt-link :to="parseUrlByDoc(article)">
             <p class="text-sm text-gray-500 dark:text-gray-200">
               {{ article.description }}
             </p>
@@ -72,6 +72,9 @@ const recent5Posts: QueryBuilderParams = {
 
   sort: [{ date: -1 }],
 };
+
+const _temp = await queryContent(recent5Posts).find();
+// console.log("44", _temp);
 
 const count = await blogsCount();
 pager.total = count;
