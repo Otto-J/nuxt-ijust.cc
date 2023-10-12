@@ -61,7 +61,7 @@ const getPublishDate = (item: any) => {
 
 const pager = reactive({
   current: 1,
-  size: 2,
+  size: 10,
   total: 1,
 });
 // 优先判断页码

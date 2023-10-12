@@ -48,6 +48,28 @@
               </template>
             </var-cell>
           </nuxt-link>
+          <nuxt-link to="/archive">
+            <var-cell ripple title="Archive">
+              <template #icon>
+                <icon
+                  name="material-symbols:archive-outline"
+                  size="18"
+                  class="mr-2"
+                />
+              </template>
+            </var-cell>
+          </nuxt-link>
+          <nuxt-link to="/tags">
+            <var-cell ripple title="Tags">
+              <template #icon>
+                <icon
+                  name="material-symbols:auto-label-outline"
+                  size="18"
+                  class="mr-2"
+                />
+              </template>
+            </var-cell>
+          </nuxt-link>
         </var-paper>
       </div>
       <var-paper

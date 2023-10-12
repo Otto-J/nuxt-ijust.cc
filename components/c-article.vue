@@ -77,7 +77,7 @@ const doc = await queryContent(props.category)
   // .find();
   .findOne();
 
-console.log("5content", doc);
+// console.log("5content", doc);
 </script>
 
 <style></style>
