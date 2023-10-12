@@ -1,9 +1,10 @@
 ---
 title: 编写一个小工具方便快速为文章添加 Banner
 slug: add-a-post-banner-tool
+update_time: 2023/10/13 00:10:21
 ---
-![image.png](https://cdn.ijust.cc/img/20231012232656.png)
 
+![image.png](https://cdn.ijust.cc/img/20231012232656.png)
 
 ## 背景
 
@@ -27,7 +28,7 @@ slug: add-a-post-banner-tool
 
 ## 技术选型
 
-###  shadcn 样式
+### shadcn 样式
 
 功能不复杂，写个表单，堆个样式，生成图片就可以。对完成任务有信心，所以尝试困难 i+1 ，我能不能顺手学习的 tailwind 相关的组件库。
 
@@ -41,8 +42,8 @@ slug: add-a-post-banner-tool
 
 ![image.png](https://cdn.ijust.cc/img/20231013000335.png)
 
-
 ### html-to-image 生成图片
+
 基于 html 生成图片，大名鼎鼎的 html2canvas 就很不错，我去 https://npmtrends.com/ 一搜，发现 https://github.com/bubkoo/html-to-image 还不错，更新频率高、文档样式现代，api 清晰，也拿来用
 
 ### 动态颜色 hsl
@@ -64,7 +65,7 @@ slug: add-a-post-banner-tool
 第一反应 filter，也就是 `hub-rotate`
 
 ```css
-.hue{
+.hue {
   filter: hue-rotate(45deg);
 }
 ```
@@ -81,15 +82,15 @@ slug: add-a-post-banner-tool
 ```js
 // HSB to HSL
 function hsbToHsl(h, s, b) {
-  let l = (2 - s) * b / 2;
-  s = s * b / (l < 0.5 ? l * 2 : 2 - l * 2);
+  let l = ((2 - s) * b) / 2;
+  s = (s * b) / (l < 0.5 ? l * 2 : 2 - l * 2);
   return [h, s, l];
 }
 
 // HSL to HSB
 function hslToHsb(h, s, l) {
   let v = l + s * (l < 0.5 ? l : 1 - l);
-  s = 2 * s / (v + l);
+  s = (2 * s) / (v + l);
   return [h, s, v];
 }
 

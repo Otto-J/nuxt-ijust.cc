@@ -66,11 +66,6 @@ const commonWhere = {
 // 优先判断页码
 pager.total = await queryContent("/").where(commonWhere).count();
 
-const getPublishDate = (item: ParsedContent) => {
-  const _date = item.date ?? item.pubDate;
-  return formatDate(_date);
-};
-
 const yearFilterDataArray = ref<
   Array<{
     year: number;
@@ -83,37 +78,8 @@ const { data } = await useAsyncData(key, () =>
   queryContent("/").where(commonWhere).limit(pager.size).find(),
 );
 
-/** 添加 year 字段，按照年份分组 */
-const yearFilterData = (data.value ?? [])
-  ?.map((i) => {
-    const _date = i.date ?? i.pubDate;
-    return {
-      ...i,
-      year: dayjs(_date).year(),
-    };
-  }) // 按照年份分组
-  .reduce(
-    (acc, cur) => {
-      const year = cur.year;
-      if (!acc[year]) {
-        acc[year] = [];
-      }
-      acc[year].push(cur);
-      return acc;
-    },
-    {} as Record<number, ParsedContent[]>,
-  );
 // 转换成数组，按照年份倒序
-yearFilterDataArray.value = Object.entries(yearFilterData)
-  .map(([year, data]) => {
-    return {
-      year: Number(year),
-      data,
-    };
-  })
-  .sort((a, b) => b.year - a.year);
-
-// console.log(45, key, data.value, yearFilterData, yearFilterDataArray);
+yearFilterDataArray.value = filterYearDate(data.value ?? []);
 </script>
 
 <style></style>

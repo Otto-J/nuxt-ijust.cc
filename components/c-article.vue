@@ -9,7 +9,7 @@
       <p>
         <span>发布于</span>
         <nuxt-link class="underline ml-1" :to="parseUrlByDoc(doc)">{{
-          formatDate(doc.date)
+          getPublishDate(doc)
         }}</nuxt-link>
       </p>
       <p>

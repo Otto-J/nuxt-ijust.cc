@@ -1,5 +1,5 @@
 ---
-date: 2023-10-08 15:02:23
+update_time: 2023-10-08 15:02:23
 title: 介绍 NuxtStudio
 keywords: nuxt, nuxtstudio, git cms
 description: 介绍下 nuxt.studio 基础使用和踩坑经验分享

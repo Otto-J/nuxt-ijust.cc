@@ -67,10 +67,11 @@ const recent5Posts: QueryBuilderParams = {
       },
     },
   ],
+  sort: [{ update_time: -1, date: -1 }],
   limit: pager.size,
   skip: (pager.current - 1) * pager.size,
 
-  sort: [{ date: -1 }],
+  // sort: [{ date: -1 }],
 };
 
 const _temp = await queryContent(recent5Posts).find();

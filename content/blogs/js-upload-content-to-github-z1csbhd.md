@@ -1,6 +1,6 @@
 ---
 title: js 上传内容到 github
-date: '2023-10-10 12:38:19'
+update_time: "2023-10-10 12:38:19"
 head:
   - name: keywords
     content: 代码片段
@@ -22,37 +22,39 @@ next: false
 
 1. 获取个人访问令牌：
 
-    * 登录到 GitHub，进入 "Settings" -> "Developer settings" -> "Personal access tokens"。
-    * 点击 "Generate new token" 创建一个新的访问令牌。
-    * 为访问令牌提供描述，并选择适当的权限范围（例如，访问仓库、读取和写入文件）。
-    * 生成令牌并将其保存在安全的地方。
+   - 登录到 GitHub，进入 "Settings" -> "Developer settings" -> "Personal access tokens"。
+   - 点击 "Generate new token" 创建一个新的访问令牌。
+   - 为访问令牌提供描述，并选择适当的权限范围（例如，访问仓库、读取和写入文件）。
+   - 生成令牌并将其保存在安全的地方。
+
 2. 初始化 JavaScript 插件：
 
-    * 在你的项目中创建一个 JavaScript 文件，例如 `github-publish.js`​。
-    * 引入必要的 JavaScript 库，例如 `axios`​ 或 `fetch`​，用于与 GitHub API 进行交互。
+   - 在你的项目中创建一个 JavaScript 文件，例如 `github-publish.js`​。
+   - 引入必要的 JavaScript 库，例如 `axios`​ 或 `fetch`​，用于与 GitHub API 进行交互。
+
 3. 实现发布 JSON 的逻辑：
 
-    * 在插件中使用个人访问令牌进行身份验证。将访问令牌作为请求标头或参数的一部分发送到 GitHub API。
-    * 使用 GitHub API 创建一个新的文件或更新现有文件，将 JSON 数据写入文件中。
-    * 将文件提交到仓库并进行提交操作。
+   - 在插件中使用个人访问令牌进行身份验证。将访问令牌作为请求标头或参数的一部分发送到 GitHub API。
+   - 使用 GitHub API 创建一个新的文件或更新现有文件，将 JSON 数据写入文件中。
+   - 将文件提交到仓库并进行提交操作。
 
 下面是一个示例代码片段，展示如何使用个人访问令牌将 JSON 发布到 GitHub 上：
 
 ```javascript
 // 引入 JavaScript 库，例如 axios
-const axios = require('axios');
+const axios = require("axios");
 
 // JSON 数据
-const jsonData = { key: 'value' };
+const jsonData = { key: "value" };
 
 // GitHub 仓库信息
-const owner = 'your-username';
-const repo = 'your-repo';
-const path = 'path/to/file.json';
-const branch = 'main';
+const owner = "your-username";
+const repo = "your-repo";
+const path = "path/to/file.json";
+const branch = "main";
 
 // 个人访问令牌
-const token = 'your-personal-access-token';
+const token = "your-personal-access-token";
 
 // 发布 JSON 到 GitHub
 async function publishJSON() {
@@ -63,7 +65,7 @@ async function publishJSON() {
     // 构建请求头
     const headers = {
       Authorization: `token ${token}`,
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     };
 
     // 获取现有文件 SHA
@@ -71,9 +73,9 @@ async function publishJSON() {
     const sha = existingFileResponse.data.sha;
 
     // 构建提交内容
-    const content = Buffer.from(JSON.stringify(jsonData)).toString('base64');
+    const content = Buffer.from(JSON.stringify(jsonData)).toString("base64");
     const payload = {
-      message: 'Update JSON file',
+      message: "Update JSON file",
       content: content,
       sha: sha,
       branch: branch,
@@ -81,9 +83,9 @@ async function publishJSON() {
 
     // 创建或更新文件
     const response = await axios.put(apiUrl, payload, { headers });
-    console.log('JSON file published:', response.data);
+    console.log("JSON file published:", response.data);
   } catch (error) {
-    console.error('Error publishing JSON file:', error);
+    console.error("Error publishing JSON file:", error);
   }
 }
 
