@@ -50,9 +50,6 @@ import dayjs from "dayjs";
 
 const category = "blogs";
 const commonWhere = {
-  _dir: {
-    $in: [category],
-  },
   _partial: false,
 };
 const route = useRoute();
@@ -68,7 +65,7 @@ const pager = reactive({
   total: 1,
 });
 // 优先判断页码
-pager.total = await queryContent("/").where(commonWhere).count();
+pager.total = await queryContent(category).where(commonWhere).count();
 
 let current = Number(route.params?.page) || 1;
 
@@ -88,7 +85,7 @@ const yearFilterDataArray = ref<
 
 const key = `list-${category}-${pager.current}`;
 const { data } = await useAsyncData(key, () =>
-  queryContent("/")
+  queryContent(category)
     .where(commonWhere)
     .sort({ date: -1 })
     .limit(pager.size)

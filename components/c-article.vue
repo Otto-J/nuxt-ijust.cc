@@ -44,27 +44,29 @@
   </var-paper>
 </template>
 <script lang="ts" setup>
-import { QueryBuilderParams } from "@nuxt/content/dist/runtime/types";
-
-const props = defineProps<{
-  category: string;
-}>();
+const props = withDefaults(
+  defineProps<{
+    category: string;
+  }>(),
+  {
+    category: "blogs",
+  },
+);
 
 const route = useRoute();
 
-const slug = computed(() => route.params.slug[0] as string);
+const slug = computed(() => route.params.slug?.[0] as string);
 
-const doc = await queryContent("")
+const doc = await queryContent(props.category)
   .where({
-    _dir: {
-      $in: [props.category],
-    },
     _partial: false,
     $or: [
       {
         _path: {
           // blogs/原本的 path
-          $eq: `/${props.category}/${slug.value}`,
+          $eq: slug.value
+            ? `/${props.category}/${slug.value}`
+            : `/${props.category}`,
         },
       },
       {
@@ -72,9 +74,10 @@ const doc = await queryContent("")
       },
     ],
   })
+  // .find();
   .findOne();
 
-// console.log("content", doc);
+console.log("5content", doc);
 </script>
 
 <style></style>

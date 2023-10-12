@@ -61,14 +61,11 @@ const pager = reactive({
 });
 
 const commonWhere = {
-  _dir: {
-    $in: [props.category],
-  },
   _partial: false,
 };
 
 // 优先判断页码
-pager.total = await queryContent("/").where(commonWhere).count();
+pager.total = await queryContent(props.category).where(commonWhere).count();
 
 const _routerPage = Number(route.params?.page);
 const handlePageCase = () => {
@@ -105,7 +102,7 @@ const yearFilterDataArray = ref<
 const handleList = async () => {
   const key = `list-${props.category}-${pager.current}`;
   const { data } = await useAsyncData(key, () =>
-    queryContent("/")
+    queryContent(props.category)
       .where(commonWhere)
       .sort({ date: -1 })
       .limit(pager.size)
