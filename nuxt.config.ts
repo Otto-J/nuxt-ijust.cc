@@ -149,4 +149,20 @@ export default defineNuxtConfig({
     // only ssr
     public: {},
   },
+  components: [
+    {
+      path: "~/components/ui",
+      // this is required else Nuxt will autoImport `.ts` file
+      extensions: [".vue"],
+      // prefix for your components, eg: UiButton
+      prefix: "Ui",
+    },
+    {
+      path: "~/components",
+      // this is required else Nuxt will autoImport `.ts` file
+      extensions: [".vue"],
+      // prefix for your components, eg: UiButton
+      // prefix: "Ui",
+    },
+  ],
 });

@@ -118,7 +118,7 @@ watchEffect(() => {
   StyleProvider(currentTheme);
 });
 
-const total = await blogsCount();
+// const total = await blogsCount();
 
 const socialLinks = [
   {
