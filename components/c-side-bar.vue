@@ -70,15 +70,26 @@
               </template>
             </var-cell>
           </nuxt-link>
+          <nuxt-link to="/tools">
+            <var-cell ripple title="Tools">
+              <template #icon>
+                <icon
+                  name="material-symbols:auto-label-outline"
+                  size="18"
+                  class="mr-2"
+                />
+              </template>
+            </var-cell>
+          </nuxt-link>
         </var-paper>
       </div>
       <var-paper
-        class="pt-2 pb-6 text-center text-gray-800 dark:text-gray-100"
+        class="pt-2 mx-2 lg:mx-0 pb-6 text-center text-gray-800 dark:text-gray-100"
         :elevation="2"
       >
         <var-image width="50%" class="mx-auto" src="/boy.png" />
-        <p class="text-lg">{{ appConfig.website_author_name }}</p>
-        <p class="text-sm">{{ appConfig.website_author_desc }}</p>
+        <p class="text-lg text-gray-600">{{ appConfig.website_author_name }}</p>
+        <p class="text-sm text-gray-500">{{ appConfig.website_author_desc }}</p>
 
         <div class="flex justify-center items-center space-x-2 mt-2">
           <div v-for="item of socialLinks" :key="item.link">
@@ -99,6 +110,8 @@
             />
           </div>
         </div>
+
+        <p class="mt-4 text-sm text-gray-500">最近在学 Nuxt.js</p>
       </var-paper>
     </div>
   </div>

@@ -95,7 +95,7 @@ export default defineNuxtConfig({
       meta: [
         {
           name: "author",
-          content: "",
+          content: "辛宝Otto",
         },
       ],
       link: [
@@ -128,6 +128,15 @@ export default defineNuxtConfig({
           title: "RSS Atom",
           href: "/feed.atom",
         },
+      ],
+      script: [
+        `var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?91755caf20b30881d156e53c364f4be7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();`,
       ],
     },
   },
