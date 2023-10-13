@@ -74,7 +74,7 @@
             <var-cell ripple title="Tools">
               <template #icon>
                 <icon
-                  name="material-symbols:auto-label-outline"
+                  name="material-symbols:tools-power-drill-outline"
                   size="18"
                   class="mr-2"
                 />

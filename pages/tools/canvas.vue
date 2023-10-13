@@ -9,7 +9,7 @@
         <UiCardContent class="space-y-4">
           <div class="space-y-2">
             <div class="flex space-x-4">
-              <div class="w-1/3">
+              <div class="w-1/3 space-y-2">
                 <UiLabel for="config-width"
                   >宽 Width {{ config.width[0] }}px</UiLabel
                 >
@@ -22,7 +22,7 @@
                   :step="1"
                 />
               </div>
-              <div class="w-1/3">
+              <div class="w-1/3 space-y-2">
                 <UiLabel for="config-height"
                   >高 Height {{ config.height[0] }}px</UiLabel
                 >
@@ -217,12 +217,12 @@ const defaultModel = () => ({
   height: [250],
   background: "blue",
   hue: [160],
-  personSize: [200],
-  text: "web worker podcast",
-  personY: [0],
-  textY: [10],
-  fontSize: [22],
-  fromText: "@webworker.tech",
+  personSize: [230],
+  text: "编写一个好标题",
+  personY: [13],
+  textY: [13],
+  fontSize: [26],
+  fromText: "@ijust.cc",
   fromEnable: true,
 });
 

@@ -6,8 +6,14 @@
     <div
       class="flex flex-wrap justify-center items-center space-x-4 mb-4 text-gray-700 text-sm"
     >
-      <p>
+      <p v-if="doc.create_time">
         <span>发布于</span>
+        <nuxt-link class="underline ml-1" :to="parseUrlByDoc(doc)">{{
+          formatDate(doc.create_time)
+        }}</nuxt-link>
+      </p>
+      <p>
+        <span>更新于</span>
         <nuxt-link class="underline ml-1" :to="parseUrlByDoc(doc)">{{
           getPublishDate(doc)
         }}</nuxt-link>

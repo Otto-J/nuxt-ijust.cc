@@ -2,6 +2,7 @@
 title: 编写一个小工具方便快速为文章添加 Banner
 slug: add-a-post-banner-tool
 update_time: 2023/10/13 00:10:21
+create_time: 2023/10/12 12:10:00
 ---
 
 ![image.png](https://cdn.ijust.cc/img/20231012232656.png)

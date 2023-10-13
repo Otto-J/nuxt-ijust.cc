@@ -88,7 +88,7 @@ const { data } = await useAsyncData(key, () =>
     .find(),
 );
 
-console.log(44, data.value);
+// console.log(44, data.value);
 
 // 转换成数组，按照年份倒序
 yearFilterDataArray.value = filterYearDate(data.value ?? []);
