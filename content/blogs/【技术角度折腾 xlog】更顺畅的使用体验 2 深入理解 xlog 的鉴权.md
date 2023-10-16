@@ -3,13 +3,17 @@ title: 【技术角度折腾 xlog】更顺畅的使用体验 2 深入理解 xlog
 slug: play-xlog-02
 tags:
   - xlog
-update_time: 2023/10/16 13:59:18
+update_time: 2023/10/16 14:20:19
 create_time: 2023/10/16 11:58:43
+sha: b44041edde22e06aaf26bddb35570267d35e0de8
 
 ---
+![image.png](https://cdn.ijust.cc/img/202310161419191.png)
+
+
 本文继续探索，承接 [[【技术角度折腾 xlog】更顺畅的使用体验 1 可行性探索]] 文章的内容。
 
-本文尝试实现 xlog 文章的管理，实现自己内容的增删改查，基于官方的 openapi
+本文尝试实现 xlog 文章的管理，实现自己内容的增删改查，基于官方的 openapi。本文价值 5 个币的赞赏，嘻嘻
 
 ## 背景
 
@@ -126,7 +130,7 @@ const createPost = async () => {
           title: title,
           content: content,
           summary: "",
-          sources: [],
+        sources: ["xlog"],
           attributes: [
             {
               value: "play-xlog-01", // 这里是自定义 slug
