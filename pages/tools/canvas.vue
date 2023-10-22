@@ -61,6 +61,11 @@
                   v-model:checked="config.linearEnable"
                 ></UiCheckbox>
                 <UiLabel for="config-linear-enable">是否渐变</UiLabel>
+                <UiCheckbox
+                  id="config-use-grid"
+                  v-model:checked="config.useGrid"
+                ></UiCheckbox>
+                <UiLabel for="config-use-grid">使用网格</UiLabel>
               </div>
             </div>
           </div>
@@ -153,6 +158,7 @@
           </div>
         </UiCardContent>
         <UiCardFooter class="flex space-x-2 items-center">
+          <!-- <UiButton @click="setTriangle">生成网格</UiButton> -->
           <UiButton @click="onClickPng">生成截图</UiButton>
           <UiButton variant="destructive" @click="reset">重置</UiButton>
         </UiCardFooter>
@@ -166,6 +172,8 @@
         class="flex justify-center items-center flex-col relative transition-all duration-500"
         :style="backgroundConfig"
       >
+        <div ref="canvasDOM" class="absolute top-0 left-0"></div>
+
         <div
           class="absolute z-20 w-full text-center bg-white whitespace-pre-line left-0 -translate-y-1/2 transition-all duration-500"
           v-text="config.text"
@@ -201,6 +209,7 @@
       </div>
 
       <p class="mt-2">生成的图片：</p>
+
       <div class="space-y-2" ref="node"></div>
     </div>
   </ClientOnly>
@@ -211,7 +220,7 @@ import type { StyleValue } from "vue";
 
 const node = ref<HTMLDivElement>();
 const raw = ref<HTMLDivElement>();
-
+const canvasDOM = ref<HTMLDivElement>();
 // 200deg 65% 72%
 // 200,48.1,48.6
 // hsl(180,48.1%,48.6%)
@@ -229,6 +238,7 @@ const defaultModel = () => ({
   fromText: "@ijust.cc",
   fromEnable: true,
   linearEnable: true,
+  useGrid: false,
 });
 
 const config = ref(defaultModel());
@@ -261,6 +271,33 @@ const backgroundConfig = computed<StyleValue>(() => {
   }
 });
 
+watchEffect(() => {
+  if (config.value.useGrid) {
+    setTriangle();
+  } else {
+    if (canvasDOM.value) {
+      canvasDOM.value.innerHTML = "";
+    }
+  }
+});
+
+const setTriangle = async () => {
+  import("trianglify").then(({ default: trianglify }) => {
+    const canvas = (
+      trianglify({
+        width: config.value.width[0],
+        height: config.value.height[0],
+      }) as any
+    ).toCanvas(); //.png();
+
+    // append
+    console.log(canvas);
+
+    canvasDOM.value!.innerHTML = "";
+    canvasDOM.value!.appendChild(canvas);
+  });
+};
+
 const route = useRoute();
 const router = useRouter();
 
@@ -292,7 +329,11 @@ onMounted(() => {
 });
 
 const rollBackground = () => {
-  config.value.hue[0] = Math.floor(Math.random() * 360);
+  if (config.value.useGrid) {
+    setTriangle();
+  } else {
+    config.value.hue[0] = Math.floor(Math.random() * 360);
+  }
 };
 
 const onClickPng = () => {
