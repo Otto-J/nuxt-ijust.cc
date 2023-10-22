@@ -45,9 +45,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ParsedContent } from "@nuxt/content/dist/runtime/types";
-import dayjs from "dayjs";
-
 const category = "podcasts";
 const commonWhere = {
   _partial: false,

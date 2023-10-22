@@ -44,8 +44,6 @@
   </client-only>
 </template>
 <script lang="ts" setup>
-import { ParsedContent } from "@nuxt/content/dist/runtime/types";
-import dayjs from "dayjs";
 const route = useRoute();
 
 const tag = route.params.slug?.[0];

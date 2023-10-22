@@ -40,8 +40,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ParsedContent } from "@nuxt/content/dist/runtime/types";
-import dayjs from "dayjs";
 const route = useRoute();
 const router = useRouter();
 
