@@ -159,7 +159,7 @@
       </UiCard>
     </div>
     <div class="overflow-x-auto" style="max-width: 100vw">
-      <p>原始内容</p>
+      <p>原始内容：</p>
 
       <div
         ref="raw"
@@ -200,13 +200,13 @@
         </div>
       </div>
 
-      <p>生成的图片：</p>
-      <div class="o" ref="node"></div>
+      <p class="mt-2">生成的图片：</p>
+      <div class="space-y-2" ref="node"></div>
     </div>
   </ClientOnly>
 </template>
 <script lang="ts" setup>
-import { toPng } from "html-to-image";
+import { toJpeg } from "html-to-image";
 import type { StyleValue } from "vue";
 
 const node = ref<HTMLDivElement>();
@@ -237,7 +237,6 @@ const backgroundConfig = computed<StyleValue>(() => {
   const baseConfig: StyleValue = {
     width: config.value.width[0] + "px",
     height: config.value.height[0] + "px",
-    // background: "hsl(" + config.value.hue[0] + ",48.1%,48.6%)",
     color: config.value.text,
     willChange: "background",
   };
@@ -252,17 +251,12 @@ const backgroundConfig = computed<StyleValue>(() => {
   if (config.value.linearEnable) {
     return {
       ...baseConfig,
-      background:
-        "linear-gradient(45deg, hsl(" +
-        mainColor +
-        ",48.1%,48.6%) 0%, hsl(" +
-        secondColor +
-        ",48.1%,48.6%) 100%",
+      background: `linear-gradient(45deg, hsl(${mainColor},48.1%,48.6%) 0%, hsl(${secondColor},48.1%,48.6%) 100%`,
     };
   } else {
     return {
       ...baseConfig,
-      background: "hsl(" + mainColor + ",48.1%,48.6%)",
+      background: `hsl(${mainColor},48.1%,48.6%)`,
     };
   }
 });
@@ -303,7 +297,9 @@ const rollBackground = () => {
 
 const onClickPng = () => {
   if (node.value && raw.value) {
-    toPng(raw.value)
+    toJpeg(raw.value, {
+      quality: 0.9,
+    })
       .then(function (dataUrl) {
         var img = new Image();
         img.src = dataUrl;
