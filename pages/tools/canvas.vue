@@ -51,10 +51,17 @@
                 :step="1"
               />
             </div>
-            <div class="w-1/3">
+            <div class="w-1/3 flex flex-row space-x-2 items-center">
               <UiButton size="sm" variant="secondary" @click="rollBackground"
                 >颜色 Roll</UiButton
               >
+              <div class="flex flex-row space-x-2 items-center">
+                <UiCheckbox
+                  id="config-linear-enable"
+                  v-model:checked="config.linearEnable"
+                ></UiCheckbox>
+                <UiLabel for="config-linear-enable">是否渐变</UiLabel>
+              </div>
             </div>
           </div>
           <div class="flex space-x-4">
@@ -135,11 +142,13 @@
                 class="w-40"
                 v-model="config.fromText"
               />
-              <UiCheckbox
-                id="config-from-enable"
-                v-model:checked="config.fromEnable"
-              ></UiCheckbox>
-              <UiLabel for="config-from-enable">是否显示</UiLabel>
+              <div class="flex flex-row items-center space-x-2">
+                <UiCheckbox
+                  id="config-from-enable"
+                  v-model:checked="config.fromEnable"
+                ></UiCheckbox>
+                <UiLabel for="config-from-enable">是否显示</UiLabel>
+              </div>
             </div>
           </div>
         </UiCardContent>
@@ -155,13 +164,7 @@
       <div
         ref="raw"
         class="flex justify-center items-center flex-col relative transition-all duration-500"
-        :style="{
-          width: config.width[0] + 'px',
-          height: config.height[0] + 'px',
-          background: 'hsl(' + config.hue[0] + ',48.1%,48.6%)',
-          color: config.text,
-          willChange: 'background',
-        }"
+        :style="backgroundConfig"
       >
         <div
           class="absolute z-20 w-full text-center bg-white whitespace-pre-line left-0 -translate-y-1/2 transition-all duration-500"
@@ -204,6 +207,7 @@
 </template>
 <script lang="ts" setup>
 import { toPng } from "html-to-image";
+import type { StyleValue } from "vue";
 
 const node = ref<HTMLDivElement>();
 const raw = ref<HTMLDivElement>();
@@ -224,9 +228,44 @@ const defaultModel = () => ({
   fontSize: [26],
   fromText: "@ijust.cc",
   fromEnable: true,
+  linearEnable: true,
 });
 
 const config = ref(defaultModel());
+
+const backgroundConfig = computed<StyleValue>(() => {
+  const baseConfig: StyleValue = {
+    width: config.value.width[0] + "px",
+    height: config.value.height[0] + "px",
+    // background: "hsl(" + config.value.hue[0] + ",48.1%,48.6%)",
+    color: config.value.text,
+    willChange: "background",
+  };
+
+  const mainColor = config.value.hue[0];
+  const step = 50;
+  // second + 50，如果到了 360，就减去 360
+  const secondColor =
+    mainColor + step > 360 ? mainColor + step - 360 : mainColor + step;
+
+  // console.log(mainColor, secondColor, 44);
+  if (config.value.linearEnable) {
+    return {
+      ...baseConfig,
+      background:
+        "linear-gradient(45deg, hsl(" +
+        mainColor +
+        ",48.1%,48.6%) 0%, hsl(" +
+        secondColor +
+        ",48.1%,48.6%) 100%",
+    };
+  } else {
+    return {
+      ...baseConfig,
+      background: "hsl(" + mainColor + ",48.1%,48.6%)",
+    };
+  }
+});
 
 const route = useRoute();
 const router = useRouter();
