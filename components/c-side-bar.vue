@@ -84,7 +84,7 @@
         </var-paper>
       </div>
       <var-paper
-        class="pt-2 mx-2 lg:mx-0 pb-6 text-center text-gray-800 dark:text-gray-100"
+        class="lg:pt-2 pt-0 mx-0 lg:mx-2 pb-6 text-center text-gray-800 dark:text-gray-100"
         :elevation="2"
       >
         <var-image width="50%" class="mx-auto" src="/boy.png" />

@@ -135,6 +135,11 @@
           </div>
 
           <div class="space-y-2 w-full text-right">
+            <UiLabel for="config-person-url">小人图片</UiLabel>
+            <UiInput id="config-person-url" v-model="config.personUrl" />
+          </div>
+
+          <div class="space-y-2 w-full text-right">
             <UiLabel for="config-text">标题内容</UiLabel>
             <UiTextarea id="config-text" v-model="config.text" />
           </div>
@@ -159,7 +164,8 @@
         </UiCardContent>
         <UiCardFooter class="flex space-x-2 items-center">
           <!-- <UiButton @click="setTriangle">生成网格</UiButton> -->
-          <UiButton @click="onClickPng">生成截图</UiButton>
+          <UiButton @click="onClickJpg">生成 jpg截图</UiButton>
+          <UiButton @click="onClickPng">生成 png 截图</UiButton>
           <UiButton variant="destructive" @click="reset">重置</UiButton>
         </UiCardFooter>
       </UiCard>
@@ -210,12 +216,12 @@
 
       <p class="mt-2">生成的图片：</p>
 
-      <div class="space-y-2" ref="node"></div>
+      <div class="space-y-2" ref="node" id="gen-img"></div>
     </div>
   </ClientOnly>
 </template>
 <script lang="ts" setup>
-import { toJpeg } from "html-to-image";
+import { toJpeg, toPng, toSvg, toPixelData } from "html-to-image";
 import type { StyleValue } from "vue";
 
 const node = ref<HTMLDivElement>();
@@ -231,6 +237,7 @@ const defaultModel = () => ({
   background: "blue",
   hue: [160],
   personSize: [230],
+  personUrl: "/boy.png",
   text: "编写一个好标题",
   personY: [13],
   textY: [13],
@@ -336,11 +343,24 @@ const rollBackground = () => {
   }
 };
 
-const onClickPng = () => {
+const onClickJpg = () => {
   if (node.value && raw.value) {
     toJpeg(raw.value, {
-      quality: 0.9,
+      quality: 0.99,
     })
+      .then(function (dataUrl) {
+        var img = new Image();
+        img.src = dataUrl;
+        node.value!.appendChild(img);
+      })
+      .catch(function (error) {
+        console.error("oops, something went wrong!", error);
+      });
+  }
+};
+const onClickPng = () => {
+  if (node.value && raw.value) {
+    toPng(raw.value, {})
       .then(function (dataUrl) {
         var img = new Image();
         img.src = dataUrl;
