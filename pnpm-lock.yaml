@@ -23,15 +23,9 @@ dependencies:
   clsx:
     specifier: ^2.0.0
     version: 2.0.0
-  crossbell:
-    specifier: ^1.9.0
-    version: 1.9.0
   dayjs:
     specifier: ^1.11.10
     version: 1.11.10
-  gray-matter:
-    specifier: ^4.0.3
-    version: 4.0.3
   html-to-image:
     specifier: ^1.11.11
     version: 1.11.11
@@ -53,6 +47,9 @@ dependencies:
   trianglify:
     specifier: ^4.1.1
     version: 4.1.1
+  unstorage-xlog-driver:
+    specifier: ^0.0.1
+    version: 0.0.1
 
 devDependencies:
   '@nuxt/content':
@@ -9050,6 +9047,31 @@ packages:
       chokidar: 3.5.3
       webpack-sources: 3.2.3
       webpack-virtual-modules: 0.5.0
+
+  /unstorage-xlog-driver@0.0.1:
+    resolution: {integrity: sha512-IbvRNYGZQ8bcrJtFD5FxYrwuki+4obWnmbz9lKNehpCgvPPbipuxKTofIP2qf2OEF+rW2oLEerWD6jE2QGR1zg==}
+    dependencies:
+      crossbell: 1.9.0
+      gray-matter: 4.0.3
+      unstorage: 1.9.0
+    transitivePeerDependencies:
+      - '@azure/app-configuration'
+      - '@azure/cosmos'
+      - '@azure/data-tables'
+      - '@azure/identity'
+      - '@azure/keyvault-secrets'
+      - '@azure/storage-blob'
+      - '@capacitor/preferences'
+      - '@planetscale/database'
+      - '@upstash/redis'
+      - '@vercel/kv'
+      - bufferutil
+      - idb-keyval
+      - supports-color
+      - typescript
+      - utf-8-validate
+      - zod
+    dev: false
 
   /unstorage@1.9.0:
     resolution: {integrity: sha512-VpD8ZEYc/le8DZCrny3bnqKE4ZjioQxBRnWE+j5sGNvziPjeDlaS1NaFFHzl/kkXaO3r7UaF8MGQrs14+1B4pQ==}

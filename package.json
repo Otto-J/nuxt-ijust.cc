@@ -30,15 +30,14 @@
     "@vueuse/core": "^10.5.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
-    "crossbell": "^1.9.0",
     "dayjs": "^1.11.10",
-    "gray-matter": "^4.0.3",
     "html-to-image": "^1.11.11",
     "lucide-vue-next": "^0.286.0",
     "radix-vue": "^0.4.1",
     "sitemap": "^7.1.1",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
-    "trianglify": "^4.1.1"
+    "trianglify": "^4.1.1",
+    "unstorage-xlog-driver": "^0.0.1"
   }
 }
