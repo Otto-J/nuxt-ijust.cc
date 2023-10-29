@@ -41,7 +41,7 @@ jobs:
           secret_key: ${{ secrets.TENCENT_CLOUD_SECRET_KEY }}
           cos_bucket: ${{ secrets.COS_BUCKET }}
           cos_region: ${{ secrets.COS_REGION }}
-          accelerate: true # 可选，如果你懂。前提需要你手动开启全球加速
+          # accelerate: true # 可选，如果你懂。前提需要你手动开启全球加速
           local_path: .output/public
           remote_path: /
           clean: true
