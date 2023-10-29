@@ -34,7 +34,7 @@
               </template>
             </var-cell>
           </nuxt-link>
-          <nuxt-link to="/podcasts/page/1">
+          <nuxt-link to="/tags/FM">
             <var-cell ripple title="Podcasts">
               <template #icon>
                 <icon name="material-symbols:podcasts" class="mr-2" size="18" />
@@ -84,7 +84,7 @@
         </var-paper>
       </div>
       <var-paper
-        class="lg:pt-2 pt-0 mx-0 lg:mx-2 pb-6 text-center text-gray-800 dark:text-gray-100"
+        class="lg:pt-2 pt-0 mx-0 pb-6 text-center text-gray-800 dark:text-gray-100"
         :elevation="2"
       >
         <var-image width="50%" class="mx-auto" src="/boy.png" />

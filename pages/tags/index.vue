@@ -9,11 +9,12 @@
       </div>
     </var-cell>
 
-    <div class="space-x-4 mt-4">
+    <div class="flex flex-row flex-wrap">
       <router-link
         v-for="tag of tags"
         :key="tag.name"
         :to="'/tags/' + tag.name"
+        class="block m-1"
       >
         <var-button type="success">
           {{ tag.name }} ({{ tag.number }})

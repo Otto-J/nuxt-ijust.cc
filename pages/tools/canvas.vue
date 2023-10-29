@@ -223,7 +223,7 @@
 <script lang="ts" setup>
 import { toJpeg, toPng, toSvg, toPixelData } from "html-to-image";
 import type { StyleValue } from "vue";
-
+import trianglify from "trianglify";
 const node = ref<HTMLDivElement>();
 const raw = ref<HTMLDivElement>();
 const canvasDOM = ref<HTMLDivElement>();
@@ -289,20 +289,18 @@ watchEffect(() => {
 });
 
 const setTriangle = async () => {
-  import("trianglify").then(({ default: trianglify }) => {
-    const canvas = (
-      trianglify({
-        width: config.value.width[0],
-        height: config.value.height[0],
-      }) as any
-    ).toCanvas(); //.png();
+  const canvas = (
+    trianglify({
+      width: config.value.width[0],
+      height: config.value.height[0],
+    }) as any
+  ).toCanvas(); //.png();
 
-    // append
-    console.log(canvas);
+  // append
+  // console.log(canvas);
 
-    canvasDOM.value!.innerHTML = "";
-    canvasDOM.value!.appendChild(canvas);
-  });
+  canvasDOM.value!.innerHTML = "";
+  canvasDOM.value!.appendChild(canvas);
 };
 
 const route = useRoute();

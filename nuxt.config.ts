@@ -2,6 +2,7 @@
 import components from "unplugin-vue-components/vite";
 import autoImport from "unplugin-auto-import/vite";
 import { VarletUIResolver } from "unplugin-vue-components/resolvers";
+import path from "path";
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -41,6 +42,13 @@ export default defineNuxtConfig({
         "yaml",
         "docker",
       ],
+    },
+    sources: {
+      xLog: {
+        driver: path.resolve(__dirname, "./driver/xLog.mjs"),
+        characterId: 53709,
+        prefix: "/blogs",
+      },
     },
   },
   feedme: {

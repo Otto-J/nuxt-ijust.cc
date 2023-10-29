@@ -16,9 +16,17 @@
             <nuxt-link :to="parseUrlByDoc(article)">
               <p class="text-base mb-2">{{ article.title }}</p>
             </nuxt-link>
-            <nuxt-link :to="`/${article._dir}`">
-              <var-badge :color="pkOrange" :value="`#${article._dir}`" />
-            </nuxt-link>
+
+            <template v-if="(article.tags ?? []).includes('FM')">
+              <nuxt-link :to="`tags/FM`">
+                <var-badge :color="pkOrange" value="#FM" />
+              </nuxt-link>
+            </template>
+            <template v-else>
+              <nuxt-link :to="`/${article._dir}`">
+                <var-badge :color="pkGreen" :value="`#${article._dir}`" />
+              </nuxt-link>
+            </template>
           </div>
           <nuxt-link :to="parseUrlByDoc(article)">
             <p class="text-sm text-gray-500 dark:text-gray-200">
@@ -51,6 +59,7 @@ const { data: intro } = await useAsyncData("page-data", () =>
 );
 
 const pkOrange = "#ffb11b";
+const pkGreen = "#00c48f";
 
 const pager = reactive({
   current: 1,
