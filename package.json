@@ -3,11 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
+    "build": "nuxt build  && cp scf_bootstrap dist/scf_bootstrap",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "g": "nuxt generate",
     "preview": "nuxt preview",
+    "start": "PORT=9000 node ./.output/server/index.mjs",
     "format": "prettier --write ."
   },
   "devDependencies": {

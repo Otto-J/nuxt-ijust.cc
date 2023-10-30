@@ -51,6 +51,7 @@ export default defineNuxtConfig({
           "node_modules/unstorage-xlog-driver/dist/index.mjs",
         ),
         characterId: 53709,
+        ttl: 60 * 2,
         prefix: "/blogs",
       },
     },
@@ -174,6 +175,12 @@ export default defineNuxtConfig({
         // "/podcasts?page=2",
         // "/podcasts?page=3",
       ],
+    },
+    preset: "node-server",
+    output: {
+      dir: "dist",
+      // serverDir: "dist/server",
+      // publicDir: "dist/server",
     },
   },
   runtimeConfig: {
