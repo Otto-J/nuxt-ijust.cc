@@ -66,7 +66,7 @@ export default defineNuxtConfig({
       feed: {
         defaults: {
           id: "/",
-          title: "咿呀 能跑就行",
+          title: "辛宝的玄酒清谈",
           language: "zh-cn",
           description: "描述",
 
