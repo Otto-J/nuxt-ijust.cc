@@ -177,7 +177,7 @@ export default defineNuxtConfig({
         // "/podcasts?page=3",
       ],
     },
-    preset: "node-server",
+    // preset: "node-server",
     output: {
       dir: "dist",
       // serverDir: "dist/server",

@@ -4,7 +4,9 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build  && cp scf_bootstrap dist/scf_bootstrap",
-    "vercelBuild": "NITRO_PRESET=vercel nuxt build  && cp scf_bootstrap dist/scf_bootstrap",
+    "vercel:build": "NITRO_PRESET=vercel nuxt build  && cp scf_bootstrap dist/scf_bootstrap",
+    "cloudflareBuild": "NITRO_PRESET=cloudflare nuxt build  && cp scf_bootstrap dist/scf_bootstrap",
+    "cf:build": "npm run cloudflareBuild",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "g": "nuxt generate",
@@ -23,7 +25,8 @@
     "nuxt-icon": "^0.5.0",
     "prettier": "^3.0.3",
     "unplugin-auto-import": "^0.16.7",
-    "unplugin-vue-components": "^0.25.2"
+    "unplugin-vue-components": "^0.25.2",
+    "wrangler": "^3.15.0"
   },
   "dependencies": {
     "@nuxt/image": "1.0.0-rc.3",
