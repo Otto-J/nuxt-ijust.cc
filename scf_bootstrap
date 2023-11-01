@@ -1,2 +1,2 @@
 #!/bin/bash
-NITRO_PORT=9000 /var/lang/node18/bin/node index.mjs
+NITRO_PORT=9000 /var/lang/node18/bin/node server/index.mjs

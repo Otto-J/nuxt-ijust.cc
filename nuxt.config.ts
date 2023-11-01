@@ -7,6 +7,7 @@ import path from "path";
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
+
   modules: [
     "@nuxt/content",
     "@nuxtjs/tailwindcss",
@@ -51,7 +52,7 @@ export default defineNuxtConfig({
           "node_modules/unstorage-xlog-driver/dist/index.mjs",
         ),
         characterId: 53709,
-        ttl: 60 * 2,
+        ttl: 60 * 5,
         prefix: "/blogs",
       },
     },
