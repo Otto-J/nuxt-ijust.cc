@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build  && cp scf_bootstrap dist/scf_bootstrap",
+    "vercelBuild": "NITRO_PRESET=vercel nuxt build  && cp scf_bootstrap dist/scf_bootstrap",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "g": "nuxt generate",
