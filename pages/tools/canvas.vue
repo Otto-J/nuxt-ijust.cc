@@ -61,11 +61,11 @@
                   v-model:checked="config.linearEnable"
                 ></UiCheckbox>
                 <UiLabel for="config-linear-enable">是否渐变</UiLabel>
-                <UiCheckbox
+                <!-- <UiCheckbox
                   id="config-use-grid"
                   v-model:checked="config.useGrid"
                 ></UiCheckbox>
-                <UiLabel for="config-use-grid">使用网格</UiLabel>
+                <UiLabel for="config-use-grid">使用网格</UiLabel> -->
               </div>
             </div>
           </div>
@@ -223,7 +223,7 @@
 <script lang="ts" setup>
 import { toJpeg, toPng, toSvg, toPixelData } from "html-to-image";
 import type { StyleValue } from "vue";
-import trianglify from "trianglify";
+// import trianglify from "trianglify";
 const node = ref<HTMLDivElement>();
 const raw = ref<HTMLDivElement>();
 const canvasDOM = ref<HTMLDivElement>();
@@ -289,18 +289,16 @@ watchEffect(() => {
 });
 
 const setTriangle = async () => {
-  const canvas = (
-    trianglify({
-      width: config.value.width[0],
-      height: config.value.height[0],
-    }) as any
-  ).toCanvas(); //.png();
-
-  // append
-  // console.log(canvas);
-
-  canvasDOM.value!.innerHTML = "";
-  canvasDOM.value!.appendChild(canvas);
+  // const canvas = (
+  //   trianglify({
+  //     width: config.value.width[0],
+  //     height: config.value.height[0],
+  //   }) as any
+  // ).toCanvas(); //.png();
+  // // append
+  // // console.log(canvas);
+  // canvasDOM.value!.innerHTML = "";
+  // canvasDOM.value!.appendChild(canvas);
 };
 
 const route = useRoute();

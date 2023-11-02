@@ -1,7 +1,8 @@
 name = "nuxt-ijustcc"
-main = "./.output/server/index.mjs"
+main = "./dist/server/index.mjs"
 workers_dev = true
 compatibility_date = "2022-09-10"
+rules = [{ type = "ESModule", globs = ["**/*.js", "**/*.mjs"] }]
 
 [site]
-bucket = ".output/public"
+bucket = "dist/public"
