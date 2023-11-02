@@ -131,8 +131,6 @@ watchEffect(() => {
   StyleProvider(currentTheme);
 });
 
-// const total = await blogsCount();
-
 const socialLinks = [
   {
     name: "mdi:github",

@@ -84,9 +84,8 @@ const recent5Posts: QueryBuilderParams = {
 };
 
 const _temp = await queryContent(recent5Posts).find();
-// console.log("44", _temp);
 
-const count = await blogsCount();
+const count = await blogsCount().count();
 pager.total = count;
 
 // useSeoMeta({

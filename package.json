@@ -9,13 +9,14 @@
     "cf:build": "npm run cloudflareBuild",
     "cf:local": "wrangler dev dist/server/index.mjs --site dist/public --local",
     "cf:deploy": "wrangler deploy",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist dist.zip",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "g": "nuxt generate",
     "preview": "nuxt preview",
-    "start": "PORT=9000 node ./.output/server/index.mjs",
-    "format": "prettier --write ."
+    "start": "PORT=9000 node ./dist/server/index.mjs",
+    "format": "prettier --write .",
+    "zip": "zip -r dist.zip dist"
   },
   "devDependencies": {
     "@nuxt/content": "^2.9.0",
