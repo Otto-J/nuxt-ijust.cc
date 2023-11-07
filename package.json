@@ -25,7 +25,7 @@
     "@nuxthq/studio": "^1.0.3",
     "@nuxtjs/tailwindcss": "^6.8.1",
     "@types/trianglify": "^1.2.2",
-    "nuxt": "^3.8.0",
+    "nuxt": "^3.8.1",
     "nuxt-feedme": "^1.0.0",
     "nuxt-icon": "^0.5.0",
     "prettier": "^3.0.3",
