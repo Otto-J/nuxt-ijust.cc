@@ -18,7 +18,11 @@
     "start": "PORT=9000 node ./dist/server/index.mjs",
     "format": "prettier --write .",
     "zip": "zip -r dist.zip dist",
+<<<<<<< HEAD
     "ssg:preview": "npx serve dist/public"
+=======
+    "laf:deploy": "laf storage push owt9b9-website-ijustcc dist/public"
+>>>>>>> 4eb2bf4 (feat: add laf-deploy)
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.4.11",
