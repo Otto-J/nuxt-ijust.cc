@@ -1,7 +1,9 @@
 <template>
   <div class="w-full">
     <div class="title text-white py-8 text-center bg-gray-900 flex flex-col">
-      <h1 class="text-xl">{{ appConfig.website_title }}</h1>
+      <h1 class="text-xl">
+        <a href="/">{{ appConfig.website_title }}</a>
+      </h1>
       <p class="text-sm mt-4">{{ appConfig.website_description }}</p>
     </div>
     <div class="space-y-2">
@@ -88,8 +90,12 @@
         :elevation="2"
       >
         <var-image width="50%" class="mx-auto" src="/boy.png" />
-        <p class="text-lg text-gray-600">{{ appConfig.website_author_name }}</p>
-        <p class="text-sm text-gray-500">{{ appConfig.website_author_desc }}</p>
+        <p class="text-lg text-gray-600 dark:text-slate-100">
+          {{ appConfig.website_author_name }}
+        </p>
+        <p class="text-sm text-gray-500 dark:text-slate-200">
+          {{ appConfig.website_author_desc }}
+        </p>
 
         <div class="flex justify-center items-center space-x-2 mt-2">
           <div v-for="item of socialLinks" :key="item.link">
@@ -111,7 +117,9 @@
           </div>
         </div>
 
-        <p class="mt-4 text-sm text-gray-500">最近在学 Nuxt.js</p>
+        <p class="mt-4 text-sm text-gray-500 dark:text-slate-100">
+          最近在学 Nuxt.js
+        </p>
       </var-paper>
     </div>
   </div>

@@ -59,9 +59,9 @@ export default defineNuxtConfig({
   },
   feedme: {
     feeds: {
-      "/feed.atom": { revisit: "6h", type: "atom1", content: true },
-      "/feed.xml": { revisit: "6h", type: "rss2", content: true },
-      "/rss.xml": { revisit: "6h", type: "rss2", content: true },
+      "/feed.atom": { revisit: "12h", type: "atom1", content: true },
+      "/feed.xml": { revisit: "12h", type: "rss2", content: true },
+      "/rss.xml": { revisit: "12h", type: "rss2", content: true },
     },
     content: {
       feed: {
@@ -69,7 +69,7 @@ export default defineNuxtConfig({
           id: "/",
           title: "辛宝的玄酒清谈",
           language: "zh-cn",
-          description: "描述",
+          description: "辛宝的玄酒清谈",
 
           link: "/", // 完整网址
           ttl: 360,
@@ -80,7 +80,7 @@ export default defineNuxtConfig({
           },
           categories: ["blogs", "podcasts"],
           favicon: "/favicon.png",
-          copyright: "2013-2023 @辛宝Otto", // copyright
+          copyright: "2013-2024 @辛宝Otto", // copyright
         },
       },
       item: {

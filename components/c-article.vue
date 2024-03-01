@@ -40,11 +40,12 @@
     <ProseBlockquote v-if="doc.description">{{
       doc.description
     }}</ProseBlockquote>
-    <ContentRenderer
-      class="mt-8 w-full max-w-none"
-      tag="article"
-      :value="doc"
-    />
+
+    <ContentRenderer class="mt-8 w-full max-w-none" tag="article" :value="doc">
+      <template #empty>
+        <p>No content found.</p>
+      </template>
+    </ContentRenderer>
 
     <div class="my-10 border-b-2 border-gray-200" />
   </var-paper>

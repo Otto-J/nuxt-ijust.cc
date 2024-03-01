@@ -46,7 +46,7 @@
 
     <div class="m-8 flex justify-center">
       <NuxtLink to="/archive/1">
-        <var-button :color="pkOrange" text-color="#fff">查看更多</var-button>
+        <var-button :color="pkGreen" text-color="#fff">查看更多</var-button>
       </NuxtLink>
     </div>
   </div>
@@ -83,7 +83,7 @@ const recent5Posts: QueryBuilderParams = {
   // sort: [{ date: -1 }],
 };
 
-const _temp = await queryContent(recent5Posts).find();
+// const _temp = await queryContent(recent5Posts).find();
 
 const count = await blogsCount().count();
 pager.total = count;
