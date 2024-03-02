@@ -83,10 +83,12 @@ const recent5Posts: QueryBuilderParams = {
   // sort: [{ date: -1 }],
 };
 
-// const _temp = await queryContent(recent5Posts).find();
+const { data: articleCount } = await useAsyncData(
+  "articleCount",
+  async () => await blogsCount().count(),
+);
 
-const count = await blogsCount().count();
-pager.total = count;
+pager.total = articleCount.value ?? 1;
 
 // useSeoMeta({
 //   title: "[title]",

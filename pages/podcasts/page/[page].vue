@@ -57,7 +57,13 @@ const pager = reactive({
   total: 1,
 });
 // 优先判断页码
-pager.total = await queryContent(category).where(commonWhere).count();
+// 优先判断页码
+const { data: podcastCount } = await useAsyncData(
+  "podcastCount",
+  async () => await queryContent(category).where(commonWhere).count(),
+);
+
+pager.total = podcastCount.value ?? 1;
 
 let current = Number(route.params?.page) || 1;
 

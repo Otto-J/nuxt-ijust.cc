@@ -56,7 +56,12 @@ const current = Number.isNaN(_routerPage) ? 1 : _routerPage;
 pager.current = current < 1 ? 1 : current;
 
 // 优先判断页码
-pager.total = await blogsCount().count();
+const { data: articleCount } = await useAsyncData(
+  "articleCount",
+  async () => await blogsCount().count(),
+);
+
+pager.total = articleCount.value ?? 1;
 
 const maxCurrent = computed(() => Math.ceil(pager.total / pager.size));
 

@@ -62,7 +62,12 @@ const commonWhere = {
 };
 
 // 优先判断页码
-pager.total = await queryContent("/").where(commonWhere).count();
+const { data: tagsCount } = await useAsyncData(
+  "tagsCount",
+  async () => await queryContent("/").where(commonWhere).count(),
+);
+
+pager.total = tagsCount.value ?? 1;
 
 const yearFilterDataArray = ref<
   Array<{

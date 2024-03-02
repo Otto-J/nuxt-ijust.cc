@@ -6,9 +6,10 @@
     "build": "NITRO_PRESET=node-server nuxt build  && cp scf_bootstrap dist/scf_bootstrap",
     "vercel:build": "NITRO_PRESET=vercel nuxt build  && cp scf_bootstrap dist/scf_bootstrap",
     "cloudflareBuild": "NITRO_EXP_CLOUDFLARE_DYNAMIC_IMPORTS=1 NITRO_PRESET=cloudflare nuxt build  && cp scf_bootstrap dist/scf_bootstrap",
-    "cf:build": "npm run cloudflareBuild",
-    "cf:local": "wrangler dev dist/server/index.mjs --site dist/public --local",
-    "cf:deploy": "wrangler deploy",
+    "build:cf": "npm run cloudflareBuild",
+    "dev:local:cf": "wrangler dev dist/server/index.mjs --site dist/public --local",
+    "deploy:cf": "wrangler deploy",
+    "deploy:laf": "cd deploy/laf && nr deploy:laf",
     "clean": "rm -rf dist dist.zip",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
@@ -16,7 +17,8 @@
     "preview": "nuxt preview",
     "start": "PORT=9000 node ./dist/server/index.mjs",
     "format": "prettier --write .",
-    "zip": "zip -r dist.zip dist"
+    "zip": "zip -r dist.zip dist",
+    "ssg:preview": "npx serve dist/public"
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.4.11",
