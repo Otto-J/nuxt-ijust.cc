@@ -98,6 +98,30 @@ const { data: doc } = useAsyncData(key.value, async () => {
     .findOne();
   return doc!;
 });
+const appConfig = useAppConfig();
+
+useSeoMeta({
+  title: () =>
+    doc.value
+      ? `${doc.value.title} - ${appConfig.website_title}`
+      : appConfig.website_title,
+  description: () =>
+    `${doc.value?.description || appConfig.website_description}`,
+
+  ogTitle: () => `${doc.value?.title || appConfig.website_title}`,
+  ogDescription: () =>
+    `${doc.value?.description || appConfig.website_description}`,
+
+  twitterTitle: () => `${doc.value?.title || appConfig.website_title}`,
+  twitterDescription: () =>
+    `${doc.value?.description || appConfig.website_description}`,
+
+  twitterCard: "summary_large_image",
+  ogImage: () =>
+    doc.value
+      ? `https://f.ijust.cc/release/?title=${encodeURIComponent(doc.value.title!)}`
+      : `https://f.ijust.cc/release/?title=${encodeURIComponent(appConfig.website_title)}`,
+});
 
 // console.log("5content", doc);
 </script>
