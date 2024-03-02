@@ -95,9 +95,11 @@ export default defineNuxtConfig({
     },
     plugins: [
       components({
+        dts: "./types/components.d.ts",
         resolvers: [VarletUIResolver()],
       }),
       autoImport({
+        dts: "./types/auto-imports.d.ts",
         resolvers: [VarletUIResolver({ autoImport: true })],
       }),
     ],
