@@ -1,10 +1,11 @@
 ---
-update_time: 2023-10-08 15:02:23
+update_time: 2023-10-08T15:02:23.000Z
 title: 介绍 NuxtStudio
 keywords: nuxt, nuxtstudio, git cms
 description: 介绍下 nuxt.studio 基础使用和踩坑经验分享
-tags: ["nuxt"]
-slug: "intro-nuxStudio"
+tags:
+  - nuxt
+slug: intro-nuxStudio
 ---
 
 最近在研究 `nuxt`，希望能把 nuxt 作为后续使用的主力技术栈。在使用 Nuxt + Nuxt Content 的过程中，发现了官方最近推出了 [nuxt.studio](https://nuxt.studio)，看起来挺不错。
@@ -41,7 +42,7 @@ slug: "intro-nuxStudio"
 
 访问网站并登录，然后导入项目。导入项目之后会看到这个页面：
 
-![Snipaste_2023-10-08_15-36-57.png](/Snipaste_2023-10-08_15-36-57.png)
+![Snipaste\_2023-10-08\_15-36-57.png](/Snipaste_2023-10-08_15-36-57.png)
 
 定义如何部署，如果是第一个 Github Pages 可能就简单了，这里我选择的是 SelfHosting，这表示已经有独立的线上服务了，这也是大多数的使用情况。
 
@@ -51,7 +52,7 @@ slug: "intro-nuxStudio"
 
 在 Nuxt 项目中安装 `@nuxthq/studio` 依赖，并且在 `nuxt.config.ts` 的 modules 中注册。
 
-具体操作看官方文档 https://nuxt.studio/docs/projects/setup
+具体操作看官方文档 <https://nuxt.studio/docs/projects/setup>
 
 文档中要求这里要公开环境变量 `NUXT_PUBLIC_STUDIO_TOKENS` ，这里一开始我很困惑，不清楚如何理解 Nuxt 的环境变量，是 `.env` ，还是 `appconfig` 。
 
@@ -70,6 +71,6 @@ slug: "intro-nuxStudio"
 
 ### 页面使用
 
-![Snipaste_2023-10-08_16-22-11.png](/Snipaste_2023-10-08_16-22-11.png)
+![Snipaste\_2023-10-08\_16-22-11.png](/Snipaste_2023-10-08_16-22-11.png)
 
 本文就是用 studio 提供的方案运行的，并不是实时预览，感觉页面 idel 个十几秒才会同步一次。
