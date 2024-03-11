@@ -1,0 +1,20 @@
+{
+  "name": "qiniu",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "upload": "bun run qiniu-oss.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.529.1",
+    "@aws-sdk/lib-storage": "^3.529.1",
+    "@aws-sdk/s3-request-presigner": "^3.529.1",
+    "qiniu": "^7.11.0"
+  }
+}
