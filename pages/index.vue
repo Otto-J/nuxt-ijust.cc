@@ -35,7 +35,7 @@
           </nuxt-link>
 
           <div class="text-right text-sm text-gray-500 dark:text-gray-200">
-            update: {{ getPublishDate(article) }}
+            更新日期: {{ getPublishDate(article) }}
           </div>
         </div>
       </template>
@@ -44,9 +44,13 @@
       </template>
     </ContentList>
 
-    <div class="m-8 flex justify-center">
-      <NuxtLink to="/archive/1">
-        <var-button :color="pkGreen" text-color="#fff">查看更多</var-button>
+    <div class="m-8 flex justify-center space-x-2">
+      <NuxtLink
+        v-for="item of totalListNumber"
+        :key="item"
+        :to="`/archive/${item}`"
+      >
+        <var-button :color="pkGreen" text-color="#fff"> {{ item }} </var-button>
       </NuxtLink>
     </div>
   </div>
@@ -67,6 +71,8 @@ const pager = reactive({
   total: 1,
 });
 
+const totalListNumber = computed(() => Math.ceil(pager.total / 10));
+
 const recent5Posts: QueryBuilderParams = {
   path: "/",
   where: [
@@ -76,11 +82,9 @@ const recent5Posts: QueryBuilderParams = {
       },
     },
   ],
-  sort: [{ update_time: -1, date: -1 }],
+  sort: [{ create_time: -1, date: -1 }],
   limit: pager.size,
   skip: (pager.current - 1) * pager.size,
-
-  // sort: [{ date: -1 }],
 };
 
 const { data: articleCount } = await useAsyncData(
