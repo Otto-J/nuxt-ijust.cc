@@ -36,7 +36,7 @@
       >
         <div class="post-tags space-x-2 mt-2">
           <template v-if="(article.tags ?? []).includes('FM')">
-            <nuxt-link :to="`tags/FM`">
+            <nuxt-link :to="`/tags/FM`">
               <var-badge :color="pkOrange" value="#FM" />
             </nuxt-link>
           </template>
