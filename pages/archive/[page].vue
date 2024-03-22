@@ -35,7 +35,7 @@
       </var-cell>
     </div>
     <div class="m-8 flex justify-center">
-      <c-pager :pager="pager" base-path="/archive" />
+      <c-pager :pager="pager" prefix="/archive" />
     </div>
   </div>
 </template>

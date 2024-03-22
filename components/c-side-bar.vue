@@ -103,18 +103,20 @@
               <icon size="20" :name="item.name" />
             </a>
           </div>
-          <div class="cursor-pointer" @click="toggleDark(!isDark)">
-            <icon
-              size="20"
-              v-show="isDark"
-              name="material-symbols:light-mode-outline"
-            />
-            <icon
-              size="20"
-              name="material-symbols:mode-night-outline"
-              v-show="!isDark"
-            />
-          </div>
+          <ClientOnly>
+            <div class="cursor-pointer" @click="toggleDark(!isDark)">
+              <icon
+                size="20"
+                v-show="isDark"
+                name="material-symbols:light-mode-outline"
+              />
+              <icon
+                size="20"
+                name="material-symbols:mode-night-outline"
+                v-show="!isDark"
+              />
+            </div>
+          </ClientOnly>
         </div>
 
         <p class="mt-4 text-sm text-gray-500 dark:text-slate-100">

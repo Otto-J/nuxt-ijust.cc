@@ -1,6 +1,6 @@
 <template>
   <div class="m-8 flex justify-center space-x-2">
-    <NuxtLink v-for="item of maxPage" :key="item" :to="`/archive/${item}`">
+    <NuxtLink v-for="item of maxPage" :key="item" :to="`${prefix}/${item}`">
       <var-button
         :color="item === pager.current ? pkOrange : pkGreen"
         text-color="#fff"
@@ -11,30 +11,29 @@
   </div>
 </template>
 <script lang="ts" setup>
-const props = defineProps<{
-  pager: {
-    current: number;
-    size: number;
-    total: number;
-  };
-  basePath: string;
-}>();
+const props = withDefaults(
+  defineProps<{
+    prefix: string;
+    pager: {
+      current: number;
+      size: number;
+      total: number;
+    };
+  }>(),
+  {
+    prefix: "/archive",
+    pager: () => ({
+      current: 1,
+      size: 10,
+      total: 1,
+    }),
+  },
+);
 
 const pkOrange = "#ffb11b";
 const pkGreen = "#00c48f";
 
 const maxPage = computed(() => Math.ceil(props.pager.total / props.pager.size));
-
-const goPrev = computed(() => {
-  return {
-    path: `${props.basePath}/${props.pager.current - 1}`,
-  };
-});
-const goNext = computed(() => {
-  return {
-    path: `${props.basePath}/${props.pager.current + 1}`,
-  };
-});
 </script>
 
 <style></style>

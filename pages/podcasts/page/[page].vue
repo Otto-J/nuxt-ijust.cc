@@ -40,7 +40,7 @@
       </var-cell>
     </div>
     <div class="m-8 flex justify-center">
-      <c-pager :pager="pager" :base-path="`/${category}/page`" />
+      <c-pager :pager="pager" :prefix="`/${category}/page`" />
     </div>
   </div>
 </template>

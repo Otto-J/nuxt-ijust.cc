@@ -2,66 +2,62 @@
   <div
     v-for="article in list"
     :key="parseUrlByDoc(article)"
-    class="hover:bg-gray-100 dark:hover:bg-gray-600 border-b border-gray-200 dark:border-gray-600 p-4 flex flex-col justify-between items-start space-y-2"
+    class="post-item hover:bg-gray-100 dark:hover:bg-gray-600 border-b border-gray-200 dark:border-gray-600 p-4 flex flex-col justify-center space-x-0 space-y-2 lg:space-y-0 lg:justify-start lg:items-start lg:space-x-2 lg:flex-row"
   >
-    <nuxt-link class="w-full" :to="parseUrlByDoc(article)">
-      <div
-        class="flex flex-col justify-center space-x-0 space-y-2 lg:space-y-0 lg:justify-start lg:items-start lg:space-x-2 lg:flex-row"
-      >
-        <template v-if="!!postCover(article.body.children ?? [])">
-          <NuxtImg
-            :src="postCover(article.body.children ?? [])!"
-            placeholder
-            width="300"
-            height="125"
-            fit="contain"
-          />
-        </template>
-        <p
-          v-else
-          class="w-full lg:w-[300px] h-20 flex justify-center items-center"
-        >
-          <span class="lg:block">没有封面图</span>
-          <span class="hidden"></span>
+    <!-- cover -->
+    <template v-if="!!postCover(article.body.children ?? [])">
+      <nuxt-link class="contents" :to="parseUrlByDoc(article)">
+        <NuxtImg
+          :src="postCover(article.body.children ?? [])!"
+          placeholder
+          width="300"
+          height="125"
+          fit="fit"
+        />
+      </nuxt-link>
+    </template>
+    <p v-else class="w-full lg:w-[300px] h-20 flex justify-center items-center">
+      <span class="lg:block">没有封面图</span>
+      <span class="hidden"></span>
+    </p>
+    <!-- info -->
+    <div class="text-gray-900 dark:text-gray-200 flex-grow">
+      <nuxt-link :to="parseUrlByDoc(article)">
+        <p class="post-title text-md mb-2">
+          {{ article.title }}
         </p>
-        <!-- 标题 -->
-        <div class="text-gray-900 dark:text-gray-200">
-          <p class="post-title text-md mb-2">
-            {{ article.title }}
-          </p>
-          <p class="post-desc text-sm">{{ baseDesc }}</p>
-          <p class="post-desc text-sm">
-            {{ parseDesc(article) }}
-          </p>
-          <div
-            class="flex flex-col items-start lg:items-end lg:flex-row lg:space-x-2"
+        <p class="post-desc text-sm">{{ baseDesc }}</p>
+        <p class="post-desc text-sm">
+          {{ parseDesc(article) }}
+        </p>
+      </nuxt-link>
+      <div
+        class="flex flex-col items-start lg:items-end lg:flex-row lg:space-x-2"
+      >
+        <div class="post-tags space-x-2 mt-2">
+          <template v-if="(article.tags ?? []).includes('FM')">
+            <nuxt-link :to="`tags/FM`">
+              <var-badge :color="pkOrange" value="#FM" />
+            </nuxt-link>
+          </template>
+          <template v-else>
+            <nuxt-link v-for="item of article.tags ?? []" :to="`/tags/${item}`">
+              <var-badge :color="pkGreen" :value="`#${item}`" />
+            </nuxt-link>
+          </template>
+        </div>
+        <div
+          class="post-info-footer flex justify-start items-center space-x-2 mt-2"
+        >
+          <p
+            class="text-right text-sm text-gray-500 dark:text-gray-200 space-x-2"
           >
-            <div class="post-tags space-x-2 mt-2">
-              <template v-if="(article.tags ?? []).includes('FM')">
-                <nuxt-link :to="`tags/FM`">
-                  <var-badge :color="pkOrange" value="#FM" />
-                </nuxt-link>
-              </template>
-              <template v-else>
-                <nuxt-link v-for="item of article.tags ?? []" :to="`/${item}`">
-                  <var-badge :color="pkGreen" :value="`#${item}`" />
-                </nuxt-link>
-              </template>
-            </div>
-            <div
-              class="post-info-footer flex justify-start items-center space-x-2 mt-2"
-            >
-              <p
-                class="text-right text-sm text-gray-500 dark:text-gray-200 space-x-2"
-              >
-                <span>创建: {{ getCreateDate(article) }}</span>
-                <span>更新: {{ getPublishDate(article) }}</span>
-              </p>
-            </div>
-          </div>
+            <span>创建: {{ getCreateDate(article) }}</span>
+            <span>更新: {{ getPublishDate(article) }}</span>
+          </p>
         </div>
       </div>
-    </nuxt-link>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -98,7 +94,7 @@ const postCover = (contentList: PostDetailInfo[]) => {
   if (item) {
     return item;
   } else {
-    console.log("未找到");
+    // console.log("未找到");
     return null;
   }
 };
@@ -109,8 +105,8 @@ const parseDesc = (article: any) => {
   const base = "";
   const maxLen = 120;
   const str = article.body.toc.links
-    .filter((i) => i.depth === 2)
-    .map((i) => i.text)
+    .filter((i: any) => i.depth === 2)
+    .map((i: any) => i.text)
     .join(" / ");
 
   if (str.length > maxLen) {

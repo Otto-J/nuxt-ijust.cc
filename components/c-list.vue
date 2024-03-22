@@ -22,32 +22,15 @@
         <span class="text-md ml-2">{{ item.year }}</span>
       </var-cell>
 
-      <!-- <var-cell border v-for="i of item.data" :key="parseUrlByDoc(i)">
-        <div class="space-x-2">
-          <nuxt-link :to="`/${i._dir}`">
-            <var-badge type="success" :value="i._dir" />
-          </nuxt-link>
-          <nuxt-link :to="parseUrlByDoc(i)">
-            <span>{{ i.title }}</span>
-          </nuxt-link>
-        </div>
-
-        <template #extra>
-          <div class="w-24 text-right">
-            {{ getPublishDate(i) }}
-          </div>
-        </template>
-      </var-cell> -->
-
       <StandardListItem :list="item.data"></StandardListItem>
     </div>
     <div class="m-8 flex justify-center">
-      <c-pager :pager="pager" :base-path="`/${props.category}/page`" />
+      <c-pager :pager="pager" :prefix="`/${props.category}/page`" />
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-import dayjs from "dayjs";
+// import dayjs from "dayjs";
 const route = useRoute();
 const router = useRouter();
 
