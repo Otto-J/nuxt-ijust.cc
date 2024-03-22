@@ -9,6 +9,11 @@ export const getPublishDate = (item: any) => {
   return formatDate(_date);
 };
 
+export const getCreateDate = (item: any) => {
+  const _date = item.create_time ?? item.date ?? item.pubDate;
+  return formatDate(_date);
+};
+
 export const filterYearDate = (dateList: any[]) => {
   /** 添加 year 字段，按照年份分组 */
   const yearFilterData = (dateList ?? [])

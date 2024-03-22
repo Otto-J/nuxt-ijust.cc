@@ -50,9 +50,10 @@ async function uploadFolder(folderPath: string) {
       });
       upload
         .done()
+
         .then((resp) => {
           if (resp.ETag) {
-            console.log("ETag:", resp.Key);
+            console.log("file:", resp.Key);
           } else {
             console.log("Aborted");
           }

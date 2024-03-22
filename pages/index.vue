@@ -7,37 +7,7 @@
     </div>
     <ContentList :query="recent5Posts">
       <template #default="{ list }">
-        <div
-          v-for="article in list"
-          :key="parseUrlByDoc(article)"
-          class="hover:bg-gray-100 dark:hover:bg-gray-600 border-b border-gray-200 dark:border-gray-600 p-4 flex flex-col justify-between items-start space-y-2"
-        >
-          <div class="flex items-endjustify-start space-x-2">
-            <nuxt-link :to="parseUrlByDoc(article)">
-              <p class="text-base mb-2">{{ article.title }}</p>
-            </nuxt-link>
-
-            <template v-if="(article.tags ?? []).includes('FM')">
-              <nuxt-link :to="`tags/FM`">
-                <var-badge :color="pkOrange" value="#FM" />
-              </nuxt-link>
-            </template>
-            <template v-else>
-              <nuxt-link :to="`/${article._dir}`">
-                <var-badge :color="pkGreen" :value="`#${article._dir}`" />
-              </nuxt-link>
-            </template>
-          </div>
-          <nuxt-link :to="parseUrlByDoc(article)">
-            <p class="text-sm text-gray-500 dark:text-gray-200">
-              {{ article.description }}
-            </p>
-          </nuxt-link>
-
-          <div class="text-right text-sm text-gray-500 dark:text-gray-200">
-            更新日期: {{ getPublishDate(article) }}
-          </div>
-        </div>
+        <StandardListItem :list="list" />
       </template>
       <template #not-found>
         <p>No articles found.</p>

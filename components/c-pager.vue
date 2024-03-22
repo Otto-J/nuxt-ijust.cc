@@ -1,22 +1,14 @@
 <template>
-  <!-- 上一页 -->
-  <nuxt-link v-if="pager.current > 1" :to="goPrev">
-    <var-button text type="primary">
-      <icon name="material-symbols:chevron-left" />
-      <span>Prev</span>
-    </var-button>
-  </nuxt-link>
-  <var-button text disabled>
-    {{ pager.current }} /
-    {{ maxPage }}
-  </var-button>
-  <!-- 下一页 -->
-  <nuxt-link v-if="pager.current < maxPage" :to="goNext">
-    <var-button text type="primary">
-      <span>Next</span>
-      <icon name="material-symbols:chevron-right" />
-    </var-button>
-  </nuxt-link>
+  <div class="m-8 flex justify-center space-x-2">
+    <NuxtLink v-for="item of maxPage" :key="item" :to="`/archive/${item}`">
+      <var-button
+        :color="item === pager.current ? pkOrange : pkGreen"
+        text-color="#fff"
+      >
+        {{ item }}
+      </var-button>
+    </NuxtLink>
+  </div>
 </template>
 <script lang="ts" setup>
 const props = defineProps<{
@@ -27,6 +19,9 @@ const props = defineProps<{
   };
   basePath: string;
 }>();
+
+const pkOrange = "#ffb11b";
+const pkGreen = "#00c48f";
 
 const maxPage = computed(() => Math.ceil(props.pager.total / props.pager.size));
 
