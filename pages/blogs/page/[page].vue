@@ -69,7 +69,7 @@ const key = `list-${category}-${pager.current}`;
 const { data } = await useAsyncData(key, () =>
   queryContent(category)
     .where(commonWhere)
-    .sort({ update_time: -1, date: -1 })
+    .sort({ create_time: -1, date: -1 })
     .limit(pager.size)
     .skip((pager.current - 1) * pager.size)
     .find(),

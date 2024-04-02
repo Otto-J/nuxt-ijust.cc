@@ -52,8 +52,11 @@
           <p
             class="text-right text-sm text-gray-500 dark:text-gray-200 space-x-2"
           >
-            <span>创建: {{ getCreateDate(article) }}</span>
-            <span>更新: {{ getPublishDate(article) }}</span>
+            <span v-if="getCreateDate(article) === getPublishDate(article)">
+            创建: {{ getCreateDate(article) }}</span>
+            <span v-else>
+              更新: {{ getPublishDate(article) }}
+              </span>
           </p>
         </div>
       </div>

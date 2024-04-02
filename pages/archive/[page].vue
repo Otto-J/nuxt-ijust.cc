@@ -28,8 +28,11 @@
         </div>
 
         <template #extra>
-          <div class="w-24 text-right">
-            {{ getPublishDate(i) }}
+          <div class="w-72 text-right space-x-2">
+            <span v-if="getCreateDate(i) === getPublishDate(i)">{{ getCreateDate(i) }} 发布</span>
+            <span v-else
+              >{{ getPublishDate(i) }} 更新</span
+            >
           </div>
         </template>
       </var-cell>
