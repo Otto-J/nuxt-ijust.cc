@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "@nuxthq/studio",
   ],
+
   content: {
     // https://content.nuxt.com/document-driven/introduction
     api: {
@@ -57,6 +58,7 @@ export default defineNuxtConfig({
       },
     },
   },
+
   feedme: {
     feeds: {
       "/feed.atom": { revisit: "12h", type: "atom1", content: true },
@@ -89,6 +91,7 @@ export default defineNuxtConfig({
       },
     },
   },
+
   vite: {
     ssr: {
       noExternal: ["@varlet/ui"],
@@ -104,6 +107,7 @@ export default defineNuxtConfig({
       }),
     ],
   },
+
   app: {
     head: {
       charset: "utf-8",
@@ -166,6 +170,7 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   nitro: {
     prerender: {
       routes: [
@@ -186,10 +191,12 @@ export default defineNuxtConfig({
       // publicDir: "dist/server",
     },
   },
+
   runtimeConfig: {
     // only ssr
     public: {},
   },
+
   components: [
     {
       path: "~/components/ui",
@@ -206,4 +213,15 @@ export default defineNuxtConfig({
       // prefix: "Ui",
     },
   ],
+
+  mdc: {
+    highlight: {
+      langs: [
+        "swift",
+        "kotlin"
+      ]
+    }
+  },
+
+  compatibilityDate: "2024-09-30"
 });
