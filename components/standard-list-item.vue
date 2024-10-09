@@ -4,22 +4,7 @@
     :key="parseUrlByDoc(article)"
     class="post-item hover:bg-gray-100 dark:hover:bg-gray-600 border-b border-gray-200 dark:border-gray-600 p-4 flex flex-col justify-center space-x-0 space-y-2 lg:space-y-0 lg:justify-start lg:items-start lg:space-x-2 lg:flex-row"
   >
-    <!-- cover -->
-    <template v-if="!!postCover(article.body.children ?? [])">
-      <nuxt-link class="contents" :to="parseUrlByDoc(article)">
-        <NuxtImg
-          :src="postCover(article.body.children ?? [])!"
-          placeholder
-          width="300"
-          height="125"
-          fit="fit"
-        />
-      </nuxt-link>
-    </template>
-    <p v-else class="w-full lg:w-[300px] h-20 flex justify-center items-center">
-      <span class="lg:block">没有封面图</span>
-      <span class="hidden"></span>
-    </p>
+ 
     <!-- info -->
     <div class="text-gray-900 dark:text-gray-200 flex-grow">
       <nuxt-link :to="parseUrlByDoc(article)">
@@ -102,7 +87,7 @@ const postCover = (contentList: PostDetailInfo[]) => {
   }
 };
 
-const baseDesc = "本文包含的段落标题：";
+const baseDesc = "本文段落标题：";
 
 const parseDesc = (article: any) => {
   const base = "";

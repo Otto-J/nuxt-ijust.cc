@@ -26,7 +26,8 @@
   </div>
 </template>
 <script lang="ts" setup>
-import type { QueryBuilderParams } from "@nuxt/content/dist/runtime/types";
+import type { QueryBuilderParams } from '@nuxt/content';
+
 
 const { data: intro } = await useAsyncData("page-data", () =>
   queryContent("about", "_intro").where({ _partial: true }).findOne(),

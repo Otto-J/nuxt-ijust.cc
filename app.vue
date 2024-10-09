@@ -49,6 +49,9 @@ useHead({
   outline: 1px solid red;
 }
 body {
+/*  define --color-body */
+  --color-body: #f9f9f9;
+
   transition:
     background-color 0.25s,
     color 0.25s;
